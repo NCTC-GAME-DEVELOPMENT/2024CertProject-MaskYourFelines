@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c21efe77928c78b43ac565c4f40ed674
+guid: dc9028a9945f61a4f82ea2987647bc3c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -147,128 +147,18 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: Vigi1-Sheet_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 80
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eff1f1061f476804f9758b9f396796a5
-      internalID: 1143056951
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vigi1-Sheet_1
-      rect:
-        serializedVersion: 2
-        x: 80
-        y: 0
-        width: 80
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1ef13722046cd54399c591764a64f83
-      internalID: -1671133379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vigi1-Sheet_2
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 80
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 64af3594aa560864ebd467d6f8d7e5bf
-      internalID: -1095770387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vigi1-Sheet_3
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 0
-        width: 80
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e5635dbd71ab06428ed9e59b474b6a0
-      internalID: -104636678
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vigi1-Sheet_4
-      rect:
-        serializedVersion: 2
-        x: 320
-        y: 0
-        width: 80
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 82c29a8d4d9aea2429584c7d2b169aba
-      internalID: 580090388
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      Vigi1-Sheet_0: 1143056951
-      Vigi1-Sheet_1: -1671133379
-      Vigi1-Sheet_2: -1095770387
-      Vigi1-Sheet_3: -104636678
-      Vigi1-Sheet_4: 580090388
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
