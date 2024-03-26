@@ -5,7 +5,6 @@ public class PlayerControl : MonoBehaviour
     public float Damage = 5f;
     public float Health = 10f;
 
-    Rigidbody = rb
 
     // Start is called before the first frame update
     void Start()
