@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public int player = 1;
-    public float MoveSpeed = 5f;
+    
+    public float speed = 5f;
     public float Damage = 5f;
     public float Health = 10f;
+    private Vector3 moveDirection = Vector3.zero;
+    private CharacterController controller;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
-       // jnbj;
+        controller = gameObject.AddComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (true)
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        controller.Move(move * Time.deltaTime * speed);
+
+        if (move != Vector3.zero)
         {
-            Debug.Log("");
+            gameObject.transform.forward = move;
         }
     }
 }

@@ -243,7 +243,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -353,8 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80501c5077dfbb84686dfc7160d171c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: 1
-  MoveSpeed: 5
+  speed: 5
   Damage: 5
   Health: 10
 --- !u!1 &705507993
