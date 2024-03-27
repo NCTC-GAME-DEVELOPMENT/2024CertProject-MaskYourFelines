@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     public float Damage = 5f;
     public float Health = 10f;
-    private Vector3 moveDirection = Vector3.zero;
+    
     private CharacterController controller;
 
 
