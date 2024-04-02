@@ -452,7 +452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80501c5077dfbb84686dfc7160d171c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 10
   Damage: 5
   Health: 10
 --- !u!212 &599172705
@@ -831,8 +831,8 @@ Transform:
   m_GameObject: {fileID: 1131510518}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 50, z: 25.75}
-  m_LocalScale: {x: 200, y: 100, z: 1}
+  m_LocalPosition: {x: 0, y: 50, z: 32}
+  m_LocalScale: {x: 200, y: 100, z: 11.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
