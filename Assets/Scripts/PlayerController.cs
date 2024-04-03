@@ -9,43 +9,28 @@ public class PlayerController : MonoBehaviour
     public float Damage = 5f;
     public float Health = 10f;
     public float rotationSpeed = 1f;
-    
 
-    private Rigidbody m_Rb;
-
-    void Awake()
-    {
-        m_Rb = GetComponent<Rigidbody>();
-    }
+    private CharacterController controller;
+   
+   
     // Start is called before the first frame update
     void Start()
     {
-       
+        controller = gameObject.AddComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
         
-    } 
 
-    void FixedUpdate()
-    {
-        float horiz = Input.GetAxis("Horizontal");
-        float vert = Input.GetAxis("Vertical");
-
-        Vector3 move = new Vector3(horiz, 360, vert).normalized;
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        controller.Move(move * Time.deltaTime * speed);
 
         if (move == Vector3.zero)
         {
-            return;
+            gameObject.transform.forward = move;
         }
-
-        Quaternion targetRotation = Quaternion.LookRotation(move);
-        targetRotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 180 * Time.fixedDeltaTime);
-        m_Rb.MovePosition(m_Rb.position + move * speed * Time.fixedDeltaTime);
-        m_Rb.MoveRotation(targetRotation);
 
     }
 
