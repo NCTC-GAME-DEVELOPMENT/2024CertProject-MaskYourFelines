@@ -1,24 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem; 
 
-public class PlayerManager : Pawn
+public class PlayerManager : MonoBehaviour
 {
-
+    public int playerNum = 1; 
     public float moveSpeed = 10f;
     public float rotationRate = 180f;
 
-    
-    private CharacterController _characterController;
 
-    private Vector2 _playerMovementInput;
+    public InputData input;
+
+    Rigidbody rb;
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody>();
+    }
 
-        _characterController = GetComponent<CharacterController>();
-        
+    private void Update()
+    {
+        input = InputPoller.Self.GetInput(playerNum); 
+    }
+
+    public void Vertical(float value)
+    {
+        float usevalue = value;
+        if (usevalue < 0)
+        {
+            usevalue = usevalue * .5f;
+        }
+
+        if (rb)
+        {
+            rb.velocity = gameObject.transform.forward * moveSpeed * usevalue;
+        }
+
+    }
+
+    public void Horizontal(float value)
+    {
+        gameObject.transform.Rotate(Vector3.up * rotationRate * value * Time.deltaTime);
     }
 
 
+   
 }

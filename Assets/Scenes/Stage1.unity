@@ -170,9 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80501c5077dfbb84686dfc7160d171c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IgnoresDamage: 1
-  LogDamageEvents: 1
-  IsSpectator: 1
+  playerNum: 0
   moveSpeed: 10
   rotationRate: 180
 --- !u!212 &187036004
@@ -224,7 +222,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!54 &187036005
@@ -454,12 +452,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1143056951, guid: c21efe77928c78b43ac565c4f40ed674, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a8300db74335e734caf5f881b857f9dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.8, y: 0.96}
+  m_Size: {x: 1.92, y: 0.96}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -637,7 +635,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 42.98, y: 15, z: 0}
+  m_LocalPosition: {x: 42.98, y: 15, z: -90}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -667,8 +665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1105336511}
   - component: {fileID: 1105336513}
-  - component: {fileID: 1105336512}
-  - component: {fileID: 1105336514}
+  - component: {fileID: 1105336515}
   m_Layer: 0
   m_Name: PlayerRoot
   m_TagString: Untagged
@@ -685,7 +682,7 @@ Transform:
   m_GameObject: {fileID: 1105336510}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -3.6}
+  m_LocalPosition: {x: 0, y: 0, z: -90}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -693,23 +690,6 @@ Transform:
   - {fileID: 187036001}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1105336512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1105336510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80501c5077dfbb84686dfc7160d171c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IgnoresDamage: 1
-  LogDamageEvents: 0
-  IsSpectator: 0
-  moveSpeed: 10
-  rotationRate: 180
 --- !u!54 &1105336513
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -737,7 +717,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
---- !u!114 &1105336514
+--- !u!114 &1105336515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -746,14 +726,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1105336510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8ab460a49fa45c46bef3c1e6ca807e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 80501c5077dfbb84686dfc7160d171c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsAI: 0
-  IsHuman: 0
-  InputPlayerNumber: 0
-  PlayerNumber: 0
-  LogInputStateInfo: 0
+  playerNum: 1
+  moveSpeed: 18.03
+  rotationRate: 180
 --- !u!1 &1131510518
 GameObject:
   m_ObjectHideFlags: 0
@@ -853,8 +831,8 @@ Transform:
   m_GameObject: {fileID: 1131510518}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -32, y: 50, z: 0}
-  m_LocalScale: {x: 200, y: 100, z: 11.8}
+  m_LocalPosition: {x: -32, y: 50, z: -39.2705}
+  m_LocalScale: {x: 278.56387, y: 100, z: 11.8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -937,8 +915,8 @@ Transform:
   m_GameObject: {fileID: 1545996917}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: 1}
-  m_LocalScale: {x: 50.75, y: 1, z: 200}
+  m_LocalPosition: {x: 0, y: -0.5, z: -37.8925}
+  m_LocalScale: {x: 50.75, y: 1, z: 277.7986}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
