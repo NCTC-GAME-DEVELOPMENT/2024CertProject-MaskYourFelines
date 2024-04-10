@@ -2,36 +2,40 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : Pawn
 {
-    
-    public float speed = 5f;
-    public float Damage = 5f;
-    public float Health = 10f;
-    public float rotationSpeed = 1f;
 
-    
-   
-   
-    // Start is called before the first frame update
-    void Start()
+    public float moveSpeed = 10f;
+    public float rotationRate = 180f;
+
+    Rigidbody rb;
+
+    private void Start()
     {
+        rb = GetComponent<Rigidbody>();
         
     }
 
-    void Update()
+    public void Vertical(float value)
     {
-        
-        
-
-       /* Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * speed);
-
-        if (move == Vector3.zero)
+        float usevalue = value;
+        if (usevalue < 0)
         {
-            gameObject.transform.forward = move;
-        } */
+            usevalue = usevalue * .5f;
+        }
+
+        if (rb)
+        {
+            rb.velocity = gameObject.transform.forward * moveSpeed * usevalue;
+        }
 
     }
+
+    public void Horizontal(float value)
+    {
+        gameObject.transform.Rotate(Vector3.up * rotationRate * value * Time.deltaTime);
+    }
+
+
 
 }
