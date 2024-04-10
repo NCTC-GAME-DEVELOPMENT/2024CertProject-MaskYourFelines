@@ -8,34 +8,17 @@ public class PlayerManager : Pawn
     public float moveSpeed = 10f;
     public float rotationRate = 180f;
 
-    Rigidbody rb;
+    
+    private CharacterController _characterController;
+
+    private Vector2 _playerMovementInput;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
+
+        _characterController = GetComponent<CharacterController>();
         
     }
-
-    public void Vertical(float value)
-    {
-        float usevalue = value;
-        if (usevalue < 0)
-        {
-            usevalue = usevalue * .5f;
-        }
-
-        if (rb)
-        {
-            rb.velocity = gameObject.transform.forward * moveSpeed * usevalue;
-        }
-
-    }
-
-    public void Horizontal(float value)
-    {
-        gameObject.transform.Rotate(Vector3.up * rotationRate * value * Time.deltaTime);
-    }
-
 
 
 }
