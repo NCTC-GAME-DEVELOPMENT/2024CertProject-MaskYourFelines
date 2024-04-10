@@ -8,6 +8,7 @@ public class Itempickup : MonoBehaviour
     public GameObject healthitem;
     public GameObject weapon;
     public GameObject mask;
+    public int heal = 20;
     void Start()
     {
         
