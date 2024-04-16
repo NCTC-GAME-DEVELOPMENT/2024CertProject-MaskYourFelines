@@ -170,6 +170,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80501c5077dfbb84686dfc7160d171c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoresDamage: 1
+  LogDamageEvents: 1
+  IsSpectator: 1
   playerNum: 0
   moveSpeed: 10
   rotationRate: 180
@@ -366,7 +369,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 599172702}
-  - component: {fileID: 599172699}
   - component: {fileID: 599172705}
   m_Layer: 0
   m_Name: PlayerSprite
@@ -375,27 +377,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!65 &599172699
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 599172698}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &599172702
 Transform:
   m_ObjectHideFlags: 0
@@ -666,6 +647,7 @@ GameObject:
   - component: {fileID: 1105336511}
   - component: {fileID: 1105336513}
   - component: {fileID: 1105336515}
+  - component: {fileID: 1105336516}
   m_Layer: 0
   m_Name: PlayerRoot
   m_TagString: Untagged
@@ -715,7 +697,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &1105336515
 MonoBehaviour:
@@ -729,9 +711,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80501c5077dfbb84686dfc7160d171c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IgnoresDamage: 1
+  LogDamageEvents: 1
+  IsSpectator: 1
   playerNum: 1
   moveSpeed: 18.03
   rotationRate: 180
+--- !u!65 &1105336516
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1105336510}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1131510518
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,6 +958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2118367040}
   - component: {fileID: 2118367039}
+  - component: {fileID: 2118367041}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -986,6 +993,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2118367041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118367038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc206a45005e4ba4fb1d77a7f5a3b811, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsAI: 0
+  IsHuman: 0
+  InputPlayerNumber: 1
+  PlayerNumber: 1
+  LogInputStateInfo: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

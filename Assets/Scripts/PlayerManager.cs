@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem; 
 
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : Pawn
 {
     public int playerNum = 1; 
     public float moveSpeed = 10f;
     public float rotationRate = 180f;
 
+    
 
-    public InputData input;
 
     Rigidbody rb;
 
@@ -21,9 +21,23 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        input = InputPoller.Self.GetInput(playerNum); 
+   
     }
 
+
+    // Left Stick Mapping 
+    // A/D on X
+    // WS on Y
+    public void Move(Vector2 value)
+    {
+        Vector3 moveDir = Vector3.zero;
+        moveDir.z = value.x;
+        moveDir.x = -value.y;
+
+        rb.velocity = moveDir * moveSpeed; 
+
+
+    }
     public void Vertical(float value)
     {
         float usevalue = value;
