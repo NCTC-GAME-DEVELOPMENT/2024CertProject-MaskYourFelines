@@ -29,7 +29,7 @@ public class PlayerManager : Pawn
 
     }
     
-    public void Jump(Vector3 value)
+    public void Jump()
     {
         rb.velocity += Vector3.up * jumpSpeed;
     }
