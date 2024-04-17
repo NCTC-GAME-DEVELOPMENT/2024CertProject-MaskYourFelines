@@ -7,10 +7,7 @@ public class PlayerManager : Pawn
 {
     public int playerNum = 1; 
     public float moveSpeed = 10f;
-    public float rotationRate = 180f;
-
-    
-
+    public float jumpSpeed = 200f;
 
     Rigidbody rb;
 
@@ -18,9 +15,6 @@ public class PlayerManager : Pawn
     {
         rb = GetComponent<Rigidbody>();
     }
-
-   
-
 
     // Left Stick Mapping 
     // A/D on X
@@ -33,7 +27,6 @@ public class PlayerManager : Pawn
 
         rb.velocity = moveDir * moveSpeed; 
 
-
     }
     
     public void Jump(Vector3 value)
@@ -41,8 +34,7 @@ public class PlayerManager : Pawn
         Vector3 jumpDir = Vector3.zero;
         jumpDir.z = value.z;
 
-        rb.velocity = jumpDir * moveSpeed;
+        rb.velocity = jumpDir * jumpSpeed;
     }
 
-   
 }
