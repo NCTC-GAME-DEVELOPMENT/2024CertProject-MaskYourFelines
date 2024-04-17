@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        input = InputPoller.Self.GetInput(playerNum); 
+        //input = InputPoller.Self.GetInput(playerNum); 
     }
 
     public void Vertical(float value)
