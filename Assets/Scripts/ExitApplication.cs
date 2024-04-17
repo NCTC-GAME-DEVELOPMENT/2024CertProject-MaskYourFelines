@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class ExitApplication : MonoBehaviour
 {
-
-    // Start is called before the first frame update
-    void Start()
+    public static string webplayerQuitURL = "http://www.google.com";
+    public void Quit()
     {
-        
+        Debug.Log("Quit Application");
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+
+#if UNITY_WEBPLAYER
+     Application.OpenURL(webplayerQuitURL)
+#endif
+        Application.Quit();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

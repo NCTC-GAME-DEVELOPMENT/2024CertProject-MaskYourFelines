@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -152,10 +152,10 @@ TextureImporter:
       name: Vigi1-Sheet_0
       rect:
         serializedVersion: 2
-        x: 5
-        y: 5
-        width: 67
-        height: 90
+        x: 0
+        y: 0
+        width: 80
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,8 +163,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d0b449c38bd2f194ea27597aa1a2f456
-      internalID: -1671222195
+      spriteID: 1d67b433c2ab6ed4fbf45f93f509fdee
+      internalID: -1206078971
       vertices: []
       indices: 
       edges: []
@@ -173,10 +173,10 @@ TextureImporter:
       name: Vigi1-Sheet_1
       rect:
         serializedVersion: 2
-        x: 85
-        y: 5
-        width: 72
-        height: 88
+        x: 80
+        y: 0
+        width: 80
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,8 +184,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4aeb1708160ebd43b35caee081458ac
-      internalID: 1047019675
+      spriteID: 1838fa4ff3334174495a3f0ff97dc161
+      internalID: -1536848615
       vertices: []
       indices: 
       edges: []
@@ -194,10 +194,10 @@ TextureImporter:
       name: Vigi1-Sheet_2
       rect:
         serializedVersion: 2
-        x: 165
-        y: 5
-        width: 67
-        height: 90
+        x: 160
+        y: 0
+        width: 80
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,8 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ef3fe51ce443a449a94c8ef04c520e9
-      internalID: -1949113088
+      spriteID: 24f5eb38f466f19448af40f02f6cbab3
+      internalID: -1537289373
       vertices: []
       indices: 
       edges: []
@@ -215,10 +215,10 @@ TextureImporter:
       name: Vigi1-Sheet_3
       rect:
         serializedVersion: 2
-        x: 245
-        y: 5
-        width: 67
-        height: 90
+        x: 240
+        y: 0
+        width: 80
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,8 +226,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 716de23d51a4dca49b2ce2007d42f31c
-      internalID: 359063492
+      spriteID: 0b431a62c0457134e9760e289f217048
+      internalID: 241344211
       vertices: []
       indices: 
       edges: []
@@ -236,10 +236,10 @@ TextureImporter:
       name: Vigi1-Sheet_4
       rect:
         serializedVersion: 2
-        x: 325
-        y: 5
-        width: 72
-        height: 88
+        x: 320
+        y: 0
+        width: 80
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -247,8 +247,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 648171794edeaff4784abc8195d8bcf8
-      internalID: -386879112
+      spriteID: 79a07a25f90a1a84baa45560f71a4d80
+      internalID: 831513532
       vertices: []
       indices: 
       edges: []
@@ -264,11 +264,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Vigi1-Sheet_0: -1671222195
-      Vigi1-Sheet_1: 1047019675
-      Vigi1-Sheet_2: -1949113088
-      Vigi1-Sheet_3: 359063492
-      Vigi1-Sheet_4: -386879112
+      Vigi1-Sheet_0: -1206078971
+      Vigi1-Sheet_1: -1536848615
+      Vigi1-Sheet_2: -1537289373
+      Vigi1-Sheet_3: 241344211
+      Vigi1-Sheet_4: 831513532
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
