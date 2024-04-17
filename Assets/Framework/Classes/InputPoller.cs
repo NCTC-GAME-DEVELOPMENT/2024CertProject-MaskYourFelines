@@ -91,7 +91,7 @@ public class InputPoller : Info
             if (kb.spaceKey.isPressed) { input.buttonSouth = true;}
 
             input.buttonNorth = kb.qKey.wasPressedThisFrame;
-            input.buttonSouth = kb.eKey.wasPressedThisFrame;
+            //input.buttonSouth = kb.eKey.wasPressedThisFrame;
             input.buttonEast = kb.zKey.wasPressedThisFrame;
             input.buttonWest = kb.cKey.wasPressedThisFrame;
 

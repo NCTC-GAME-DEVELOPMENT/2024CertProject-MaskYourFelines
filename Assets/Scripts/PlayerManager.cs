@@ -7,7 +7,7 @@ public class PlayerManager : Pawn
 {
     public int playerNum = 1; 
     public float moveSpeed = 10f;
-    public float jumpSpeed = 200f;
+    public float jumpSpeed = 20f;
 
     Rigidbody rb;
 

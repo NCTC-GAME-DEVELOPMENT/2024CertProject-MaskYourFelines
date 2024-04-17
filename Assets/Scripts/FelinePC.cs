@@ -5,6 +5,7 @@ using UnityEngine;
 public class FelinePC : PlayerController
 {
     public PlayerManager player; 
+    
 
     protected override void Start()
     {
@@ -25,12 +26,16 @@ public class FelinePC : PlayerController
         player.Move(value); 
     }
 
+    bool isGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, 0.1f);
+    }
+
     public void Jump(bool value)
     {
-        if (value)
-        {
-            player.Jump();
-        }
-
+            if (value)
+            {
+                player.Jump();
+            }
     }
 }
