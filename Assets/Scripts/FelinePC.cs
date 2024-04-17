@@ -14,7 +14,8 @@ public class FelinePC : PlayerController
 
     protected override void ProcessInput()
     {
-        Move(InputCurrent.leftStick); 
+        Move(InputCurrent.leftStick);
+        Jump(InputCurrent.lefterStick);
     }
 
 
