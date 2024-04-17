@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     string Stage1_Scene = "Stage1";
 
-         private void stage1()
+         public void stage1()
     {
         Debug.Log("Stage1");
 
