@@ -15,6 +15,8 @@ public class FelinePC : PlayerController
     protected override void ProcessInput()
     {
         Move(InputCurrent.leftStick);
+
+        Jump(InputCurrent.buttonSouth);
     }
 
 
@@ -23,8 +25,12 @@ public class FelinePC : PlayerController
         player.Move(value); 
     }
 
-    public void Jump(Vector3 value)
+    public void Jump(bool value)
     {
-        player.Jump(value);
+        if (value)
+        {
+            player.Jump();
+        }
+
     }
 }

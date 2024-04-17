@@ -31,10 +31,7 @@ public class PlayerManager : Pawn
     
     public void Jump(Vector3 value)
     {
-        Vector3 jumpDir = Vector3.zero;
-        jumpDir.z = value.z;
-
-        rb.velocity = jumpDir * jumpSpeed;
+        rb.velocity += Vector3.up * jumpSpeed;
     }
 
 }
