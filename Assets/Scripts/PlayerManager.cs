@@ -19,10 +19,7 @@ public class PlayerManager : Pawn
         rb = GetComponent<Rigidbody>();
     }
 
-    private void Update()
-    {
    
-    }
 
 
     // Left Stick Mapping 
@@ -38,26 +35,14 @@ public class PlayerManager : Pawn
 
 
     }
-    public void Vertical(float value)
+    
+    public void Jump(Vector3 value)
     {
-        float usevalue = value;
-        if (usevalue < 0)
-        {
-            usevalue = usevalue * .5f;
-        }
+        Vector3 jumpDir = Vector3.zero;
+        jumpDir.z = value.z;
 
-        if (rb)
-        {
-            rb.velocity = gameObject.transform.forward * moveSpeed * usevalue;
-        }
-
+        rb.velocity = jumpDir * moveSpeed;
     }
-
-    public void Horizontal(float value)
-    {
-        gameObject.transform.Rotate(Vector3.up * rotationRate * value * Time.deltaTime);
-    }
-
 
    
 }
