@@ -8,7 +8,6 @@ public struct InputData
 {
     public Vector2 leftStick;
     public Vector2 rightStick;
-    public Vector3 lefterStick;
     public Vector2 dpad;
     public bool buttonNorth;
     public bool buttonSouth;
@@ -29,7 +28,6 @@ public struct InputData
  
         newData.leftStick = Vector2.zero;
         newData.rightStick = Vector2.zero;
-        newData.lefterStick = Vector3.zero;
         newData.dpad = Vector2.zero;
         newData.buttonNorth = false;
         newData.buttonSouth = false;
