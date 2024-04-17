@@ -21,7 +21,10 @@ public class Itempickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+
+        }
     }
 
     private void OnTriggerExit(Collider other)

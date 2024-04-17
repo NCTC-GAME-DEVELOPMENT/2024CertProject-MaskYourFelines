@@ -27,10 +27,7 @@ public class InputPoller : Info
     }
 
     // Update is called Self per frame
-    void Update()
-    {
-
-    }
+    
 
     public InputData GetInput(int PlayerNumber)
     {
@@ -87,6 +84,7 @@ public class InputPoller : Info
             if (kb.sKey.isPressed) { input.leftStick.y = -1; }
             if (kb.aKey.isPressed) { input.leftStick.x = -1; }
             if (kb.dKey.isPressed) { input.leftStick.x = 1; }
+            if (kb.spaceKey.isPressed) { input.lefterStick.z = 1;  }
 
             input.buttonNorth = kb.qKey.wasPressedThisFrame;
             input.buttonSouth = kb.eKey.wasPressedThisFrame;

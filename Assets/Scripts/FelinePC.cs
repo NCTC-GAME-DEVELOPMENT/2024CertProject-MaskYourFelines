@@ -23,5 +23,8 @@ public class FelinePC : PlayerController
         player.Move(value); 
     }
 
-
+    public void Jump(Vector3 value)
+    {
+        player.Jump(value);
+    }
 }
