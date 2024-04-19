@@ -9,6 +9,13 @@ public class PlayerManager_2 : Pawn
     public float moveSpeed = 10f;
     public float jumpSpeed = 20f;
     public Animator anim;
+    public SpriteRenderer player;
+
+    public bool WalkRight = false;
+    public bool WalkLeft = false;
+    public float timer = 0;
+    public float keyDelay = .2f;
+
 
     Rigidbody rb;
 
@@ -16,6 +23,35 @@ public class PlayerManager_2 : Pawn
     {
         rb = GetComponent<Rigidbody>();
         anim = gameObject.GetComponent<Animator>();
+    }
+
+    public void Update()
+    {
+        if (Input.GetAxis("Horizontal") > 0f)
+        {
+            WalkLeft = false;
+            WalkRight = true;
+            player.flipX = false;
+            anim.SetBool("WalkRight", WalkRight);
+        }
+        else
+        {
+            WalkRight = false;
+            anim.SetBool("WalkRight", WalkRight);
+        }
+        if (Input.GetAxis("Horizontal") < 0f)
+        {
+            
+            WalkRight = false;
+            WalkLeft = true;
+            player.flipX = true;
+            anim.SetBool("WalkLeft", WalkLeft);
+        }
+        else
+        {
+            WalkLeft = false;
+            anim.SetBool("WalkLeft", WalkLeft);
+        }
     }
 
     // Left Stick Mapping 

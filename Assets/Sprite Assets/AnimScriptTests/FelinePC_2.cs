@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FelinePC_2 : PlayerController
 {
-    public PlayerManager player; 
+    public PlayerManager_2 player; 
     
 
     protected override void Start()
