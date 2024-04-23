@@ -1,18 +1,16 @@
-using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Grunt : EnemyBase
 {
-    private float windup = 1f;
-    private float idleTime = 2f;
-    private float range = 2f;
-    private bool attacking = false;
-
-    public Transform attackPoint;
-    public GameObject sprite;
+    [SerializeField] private GameObject hitBox;
+    [SerializeField] private GameObject sprite;
     private Animator animator;
+
+    private float windup = 0.5f;
+    private float attackTime = 0.333f;
+    private float activeTime = 0.1f;
+    private float idleTime = 2f;
+    private bool trigger = false;
 
     protected override void InitializeObject()
     {
@@ -20,14 +18,22 @@ public class Grunt : EnemyBase
         animator = sprite.GetComponent<Animator>();
         animator.SetTrigger("isWalking");
     }
+
     protected override void MoveToPlayer()
     {
+        if (!trigger)
+        {
+            trigger = true;
+            animator.SetTrigger("isWalking");
+        }
+
         base.MoveToPlayer();
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
         if (distanceToPlayer <= 3)
         {
+            trigger = false;
             navMeshAgent.SetDestination(transform.position);
             animator.SetTrigger("isIdle");
             think = Attack;
@@ -36,48 +42,57 @@ public class Grunt : EnemyBase
 
     protected override void Attack()
     {
-        animator.SetTrigger("isAttacking");
-        windup -= Time.deltaTime;
-        if (windup <= 0 && !attacking)
+        windup -= Time.deltaTime; //0.5
+        if (windup <= 0)
         {
-            attacking = true;
-            Collider[] player = Physics.OverlapSphere(attackPoint.position, range);
-            foreach(Collider col in player)
+            attackTime -= Time.deltaTime; //0.333
+            if (!trigger)
             {
-                if (col.CompareTag("Player"))
+                trigger = true;
+                animator.SetTrigger("isAttacking");
+            }
+            if (attackTime <= 0)
+            {
+                activeTime -= Time.deltaTime; //0.1
+                BoxCollider collider = hitBox.GetComponent<BoxCollider>();
+                collider.enabled = true;
+                if(activeTime <= 0)
                 {
-                    Debug.Log("Damaged Player");
+                    windup = 0.5f;
+                    attackTime = 0.333f;
+                    activeTime = 0.1f;
+                    trigger = false;
+                    collider.enabled = false;
+                    think = Idle;
                 }
             }
-            windup = 1f;
-            think = Idle;
         }
+
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
         if (distanceToPlayer > 3)
         {
+            windup = 0.5f;
+            attackTime = 0.333f;
+            activeTime = 0.1f;
+            animator.SetTrigger("isWalking");
             think = MoveToPlayer;
         }
     }
 
     private void Idle()
     {
-        animator.SetTrigger("isIdle");
+        if (!trigger)
+        {
+            trigger = true;
+            animator.SetTrigger("isIdle");
+        }
         idleTime -= Time.deltaTime;
-        if(idleTime <= 0)
+        if (idleTime <= 0)
         {
             idleTime = 2;
+            trigger = false;
             think = MoveToPlayer;
         }
-    }
-
-    protected override void TakeDamage()
-    {
-        base.TakeDamage();
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.DrawWireSphere(attackPoint.position, range);
     }
 }

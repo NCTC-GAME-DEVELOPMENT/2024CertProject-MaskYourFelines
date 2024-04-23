@@ -9,8 +9,8 @@ public class EnemyBase : MonoBehaviour
     protected GameObject playerObj;
     protected PlayerManager playerManager;
 
-    protected int health;
-    protected int damage;
+    public int health;
+    public int damage;
 
     protected delegate void ThinkFunction();
     protected ThinkFunction think;
