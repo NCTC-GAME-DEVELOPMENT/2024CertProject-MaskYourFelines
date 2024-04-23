@@ -10,7 +10,7 @@ public class Itempickup : MonoBehaviour
     public GameObject healthitem;
     public GameObject weapon;
     public GameObject mask;
-    public int heal = 20;
+    int heal = 0;
     void Start()
     {
         
@@ -23,11 +23,23 @@ public class Itempickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-       
+       if (Input .GetKeyDown(KeyCode.E))
+        {
+            if (ismask == true)
+            {
+                
+            }
+            if (isweapon == true)
+            {
+
+
+            }
+            if(ishealthitem == true)
+            {
+                Destroy(healthitem);
+                heal = 20;
+            }
+        }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        
-    }
 }
