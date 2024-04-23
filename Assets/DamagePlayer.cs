@@ -13,7 +13,7 @@ public class DamagePlayer : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.GetComponent<PlayerHealth>() != null)
         {
             other.GetComponent<PlayerHealth>().CurrentHealth -= damage;
             Debug.Log("DAMAGED PLAYER (" + other.GetComponent<PlayerHealth>().CurrentHealth + " HP)");
