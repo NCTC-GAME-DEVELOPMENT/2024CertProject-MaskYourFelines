@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Itempickup : MonoBehaviour
 {
-    
+     bool ismask = false;
+     bool isweapon = false;
+    bool ishealthitem = false;
     public GameObject healthitem;
     public GameObject weapon;
     public GameObject mask;
@@ -21,10 +23,7 @@ public class Itempickup : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-
-        }
+       
     }
 
     private void OnTriggerExit(Collider other)
