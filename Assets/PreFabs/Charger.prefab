@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  damage: 10
+  damage: 5
   hitBox: {fileID: 116298578805399713}
   sprite: {fileID: 8643893953033755710}
 --- !u!1 &8643893953033755710

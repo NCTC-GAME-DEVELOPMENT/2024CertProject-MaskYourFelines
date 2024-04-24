@@ -32,7 +32,7 @@ public class Grunt : EnemyBase
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
-        if (distanceToPlayer <= 3)
+        if (distanceToPlayer <= 5)
         {
             trigger = false;
             navMeshAgent.SetDestination(transform.position);
@@ -71,7 +71,7 @@ public class Grunt : EnemyBase
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
-        if (distanceToPlayer > 3)
+        if (distanceToPlayer > 5)
         {
             windup = 0.5f;
             attackTime = 0.333f;
