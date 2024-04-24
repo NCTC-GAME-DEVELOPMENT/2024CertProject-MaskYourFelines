@@ -20,7 +20,7 @@ public class PlayerManager : Pawn
 
     private void Update()
     {
-        
+        rb.velocity -= gravityForce * Vector3.up;
     }
 
     // Left Stick Mapping 
@@ -35,18 +35,16 @@ public class PlayerManager : Pawn
         rb.velocity = moveDir * moveSpeed; 
 
     }
-    
+
+    bool isGrounded()
+    {
+        return Physics.Raycast(transform.position, -Vector3.up, 0.1f);
+    }
+
+
     public void Jump()
     {
-        bool isGrounded()
-        {
-            return Physics.Raycast(transform.position, Vector3.up, 0.1f);
-        }
-        if (isGrounded())
-        {
-            rb.velocity += Vector3.up * jumpSpeed;
-        }
-
+        rb.velocity += Vector3.up * jumpSpeed;
     }
 
 }
