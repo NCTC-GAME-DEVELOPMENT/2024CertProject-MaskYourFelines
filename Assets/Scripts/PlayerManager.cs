@@ -8,12 +8,19 @@ public class PlayerManager : Pawn
     public int playerNum = 1; 
     public float moveSpeed = 10f;
     public float jumpSpeed = 20f;
+    public float gravityForce;
 
     Rigidbody rb;
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        
     }
 
     // Left Stick Mapping 
@@ -31,7 +38,15 @@ public class PlayerManager : Pawn
     
     public void Jump()
     {
-        rb.velocity += Vector3.up * jumpSpeed;
+        bool isGrounded()
+        {
+            return Physics.Raycast(transform.position, Vector3.up, 0.1f);
+        }
+        if (isGrounded())
+        {
+            rb.velocity += Vector3.up * jumpSpeed;
+        }
+
     }
 
 }
