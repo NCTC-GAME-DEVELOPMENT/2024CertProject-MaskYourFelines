@@ -13,7 +13,7 @@ public class Charger : EnemyBase
     private float activeTime = 0.1f;
     private float idleTime = 2f;
     private float chargeDelay = 1f;
-    private int chargeDamage = 10;
+    [SerializeField] private int chargeDamage = 10;
     private bool charging = false;
     private bool trigger = false;
     private Vector3 chargePoint;
@@ -28,27 +28,26 @@ public class Charger : EnemyBase
 
     protected override void MoveToPlayer()
     {
-        if (!trigger)
-        {
-            trigger = true;
-            animator.SetTrigger("isWalking");
-        }
-
         base.MoveToPlayer();
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
-        if (distanceToPlayer <= 3)
+        if (distanceToPlayer <= 6)
         {
             trigger = false;
             navMeshAgent.SetDestination(transform.position);
             think = Attack;
         }
 
-        if (distanceToPlayer >= 20)
+        else if(distanceToPlayer >= 20)
         {
             trigger = false;
             think = Charge;
+        }
+        else if (!trigger)
+        {
+            trigger = true;
+            animator.SetTrigger("isWalking");
         }
     }
 
@@ -82,12 +81,11 @@ public class Charger : EnemyBase
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
-        if (distanceToPlayer > 3)
+        if (distanceToPlayer > 6)
         {
             windup = 0.5f;
             attackTime = 0.333f;
             activeTime = 0.1f;
-            animator.SetTrigger("isWalking");
             think = MoveToPlayer;
         }
     }

@@ -17,10 +17,7 @@ public class PlayerHealth : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.G)) 
-        {
-            takedamage(20);
-        }
+       
     }
 
     public void takedamage(int damage)
@@ -28,5 +25,11 @@ public class PlayerHealth : MonoBehaviour
         CurrentHealth -= damage;
 
         healthBar.SetHealth(CurrentHealth);
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        
     }
 }
