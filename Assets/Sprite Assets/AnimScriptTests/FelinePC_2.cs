@@ -33,7 +33,7 @@ public class FelinePC_2 : PlayerController
 
     public void Jump(bool value)
     {
-            if (value)
+            if (value && player.isGrounded)
             {
                 player.Jump();
             }

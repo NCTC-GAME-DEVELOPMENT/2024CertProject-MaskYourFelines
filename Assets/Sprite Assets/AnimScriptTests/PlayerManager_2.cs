@@ -11,6 +11,7 @@ public class PlayerManager_2 : Pawn
     public Animator anim;
     public SpriteRenderer player;
 
+    public bool isGrounded = true;
     public bool WalkRight = false;
     public bool WalkLeft = false;
     public float timer = 0;
@@ -22,11 +23,11 @@ public class PlayerManager_2 : Pawn
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        anim = gameObject.GetComponent<Animator>();
     }
 
     public void Update()
     {
+
         if (Input.GetAxis("Horizontal") > 0f)
         {
             WalkLeft = false;
@@ -52,6 +53,17 @@ public class PlayerManager_2 : Pawn
             WalkLeft = false;
             anim.SetBool("WalkLeft", WalkLeft);
         }
+    }
+
+    private void OnCollisionEnter(Collision col)
+    {
+        isGrounded = true;
+        anim.SetBool("isGrounded", isGrounded);
+    }
+    private void OnCollisionExit()
+    {
+        isGrounded = false;
+        anim.SetBool("isGrounded", isGrounded);
     }
 
     // Left Stick Mapping 

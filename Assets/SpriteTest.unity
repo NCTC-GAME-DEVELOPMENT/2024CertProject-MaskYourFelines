@@ -296,7 +296,7 @@ BoxCollider:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
-  m_ProvidesContacts: 0
+  m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
@@ -1692,6 +1692,7 @@ MonoBehaviour:
   jumpSpeed: 20
   anim: {fileID: 1722203984}
   player: {fileID: 1722203985}
+  isAirborne: 0
   WalkRight: 0
   WalkLeft: 0
   timer: 0
