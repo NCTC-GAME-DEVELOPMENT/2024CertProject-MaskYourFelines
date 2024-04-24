@@ -17,17 +17,11 @@ public class Grunt : EnemyBase
         base.InitializeObject();
         damage = 5;
         animator = sprite.GetComponent<Animator>();
-        animator.SetTrigger("isWalking");
+        think = Idle;
     }
 
     protected override void MoveToPlayer()
     {
-        if (!trigger)
-        {
-            trigger = true;
-            animator.SetTrigger("isWalking");
-        }
-
         base.MoveToPlayer();
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
@@ -38,6 +32,11 @@ public class Grunt : EnemyBase
             navMeshAgent.SetDestination(transform.position);
             animator.SetTrigger("isIdle");
             think = Attack;
+        }
+        else if (!trigger)
+        {
+            trigger = true;
+            animator.SetTrigger("isWalking");
         }
     }
 
@@ -76,7 +75,7 @@ public class Grunt : EnemyBase
             windup = 0.5f;
             attackTime = 0.333f;
             activeTime = 0.1f;
-            animator.SetTrigger("isWalking");
+            trigger = false;
             think = MoveToPlayer;
         }
     }
@@ -91,9 +90,18 @@ public class Grunt : EnemyBase
         idleTime -= Time.deltaTime;
         if (idleTime <= 0)
         {
-            idleTime = 2;
-            trigger = false;
-            think = MoveToPlayer;
+            int random = Random.Range(1, 3);
+            if (random == 1)
+            {
+                idleTime = 2f;
+                trigger = false;
+                think = MoveToPlayer;
+            }
+            if (random == 2)
+            {
+                idleTime = 2f;
+                trigger = false;
+            }
         }
     }
 }

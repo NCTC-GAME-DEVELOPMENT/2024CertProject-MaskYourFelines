@@ -86,6 +86,7 @@ public class Charger : EnemyBase
             windup = 0.5f;
             attackTime = 0.333f;
             activeTime = 0.1f;
+            trigger = false;
             think = MoveToPlayer;
         }
     }
@@ -100,9 +101,18 @@ public class Charger : EnemyBase
         idleTime -= Time.deltaTime;
         if (idleTime <= 0)
         {
-            idleTime = 2;
-            trigger = false;
-            think = MoveToPlayer;
+            int random = Random.Range(1, 3);
+            if (random == 1)
+            {
+                idleTime = 2f;
+                trigger = false;
+                think = MoveToPlayer;
+            }
+            if (random == 2)
+            {
+                idleTime = 2f;
+                trigger = false;
+            }
         }
     }
 
@@ -113,7 +123,7 @@ public class Charger : EnemyBase
             charging = true;
             trigger = true;
             gameObject.GetComponent<Collider>().isTrigger = true;
-            navMeshAgent.speed = 7;
+            navMeshAgent.speed = 10;
             navMeshAgent.SetDestination(playerObj.transform.position);
             chargePoint = playerObj.transform.position;
             animator.SetTrigger("isCharging");
