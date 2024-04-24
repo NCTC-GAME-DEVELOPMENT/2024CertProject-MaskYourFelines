@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Itempickup : MonoBehaviour
+public class Itempickup : PlayerHealth
 {
      bool ismask = false;
      bool isweapon = false;
@@ -10,9 +10,10 @@ public class Itempickup : MonoBehaviour
     public GameObject healthitem;
     public GameObject weapon;
     public GameObject mask;
-    int heal = 0;
+   
     void Start()
     {
+       
         
     }
 
@@ -21,25 +22,10 @@ public class Itempickup : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter(Collider other)
+
+    void healthitemgot(int heal)
     {
-       if (Input .GetKeyDown(KeyCode.E))
-        {
-            if (ismask == true)
-            {
-                
-            }
-            if (isweapon == true)
-            {
-
-
-            }
-            if(ishealthitem == true)
-            {
-                Destroy(healthitem);
-                heal = 20;
-            }
-        }
+        CurrentHealth += heal;
     }
 
 }
