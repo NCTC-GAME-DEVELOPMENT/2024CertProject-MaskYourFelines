@@ -14,6 +14,10 @@ public class PlayerManager_2 : Pawn
     public bool isGrounded = true;
     public bool WalkRight = false;
     public bool WalkLeft = false;
+    public bool jumpAttack = false;
+    public bool attack1 = false;
+
+
     public float timer = 0;
     public float keyDelay = .2f;
 
@@ -82,6 +86,17 @@ public class PlayerManager_2 : Pawn
     public void Jump()
     {
         rb.velocity += Vector3.up * jumpSpeed;
+    }
+
+    public void Attack()
+    {
+        anim.SetBool("attack1", attack1);
+
+    }
+
+    public void JumpAttack()
+    {
+        anim.SetBool("jumpAttack", jumpAttack);
     }
 
 }
