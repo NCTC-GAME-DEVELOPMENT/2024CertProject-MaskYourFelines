@@ -6,6 +6,7 @@ public class Charger : EnemyBase
 {
     [SerializeField] private GameObject hitBox;
     [SerializeField] private GameObject sprite;
+    private SpriteRenderer spriteRenderer;
     private Animator animator;
 
     private float windup = 0.5f;
@@ -23,6 +24,7 @@ public class Charger : EnemyBase
         base.InitializeObject();
         damage = 5;
         animator = sprite.GetComponent<Animator>();
+        spriteRenderer = sprite.GetComponent<SpriteRenderer>();
         think = Charge;
     }
 
