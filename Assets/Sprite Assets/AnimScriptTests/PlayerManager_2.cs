@@ -14,6 +14,10 @@ public class PlayerManager_2 : Pawn
     public bool isGrounded = true;
     public bool WalkRight = false;
     public bool WalkLeft = false;
+    public bool jumpAttack = false;
+    public bool attack1 = false;
+
+
     public float timer = 0;
     public float keyDelay = .2f;
 
@@ -55,6 +59,14 @@ public class PlayerManager_2 : Pawn
         }
     }
 
+    public void FixedUpdate()
+    {
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * 50 * Time.deltaTime;
+        }
+    }
+
     private void OnCollisionEnter(Collision col)
     {
         isGrounded = true;
@@ -81,7 +93,18 @@ public class PlayerManager_2 : Pawn
     
     public void Jump()
     {
-        rb.velocity += Vector3.up * jumpSpeed;
+        rb.AddForce(Vector3.up * jumpSpeed, ForceMode.VelocityChange);
+    }
+
+    public void Attack()
+    {
+        anim.SetBool("attack1", attack1);
+
+    }
+
+    public void JumpAttack()
+    {
+        anim.SetBool("jumpAttack", jumpAttack);
     }
 
 }

@@ -18,6 +18,8 @@ public class FelinePC_2 : PlayerController
         Move(InputCurrent.leftStick);
 
         Jump(InputCurrent.buttonSouth);
+
+        Attack(InputCurrent.buttonEast);
     }
 
 
@@ -33,9 +35,35 @@ public class FelinePC_2 : PlayerController
 
     public void Jump(bool value)
     {
-            if (value && player.isGrounded)
+            if (value && player.isGrounded == true)
             {
                 player.Jump();
             }
+
+            if (player.isGrounded == false && InputCurrent.buttonEast)
+            {
+                player.jumpAttack = true;
+                player.JumpAttack();
+            }
+            else 
+            { 
+                player.jumpAttack = false;
+                player.JumpAttack();
+            }
+    }
+
+    public void Attack(bool value)
+    {
+        if (InputCurrent.buttonEast && player.isGrounded == true)
+        {
+            player.attack1 = true;
+            player.Attack();
+        }
+        else 
+        { 
+            player.attack1 = false;
+            player.Attack();
+        }
+     
     }
 }
