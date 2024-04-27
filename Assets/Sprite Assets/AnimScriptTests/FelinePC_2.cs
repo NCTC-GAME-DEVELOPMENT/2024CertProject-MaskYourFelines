@@ -45,11 +45,6 @@ public class FelinePC_2 : PlayerController
                 player.jumpAttack = true;
                 player.JumpAttack();
             }
-            else 
-            { 
-                player.jumpAttack = false;
-                player.JumpAttack();
-            }
     }
 
     public void Attack(bool value)
@@ -64,6 +59,17 @@ public class FelinePC_2 : PlayerController
             player.attack1 = false;
             player.Attack();
         }
-     
+        if (InputCurrent.buttonEast && player.isGrounded == true && player.attack1 == true)
+        {
+            player.attack2 = true;
+            player.Attack2();
+        }
+        else
+        {
+            player.attack2 = false;
+            player.Attack2();
+        }
+
+
     }
 }

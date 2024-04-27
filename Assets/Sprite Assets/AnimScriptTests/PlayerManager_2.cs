@@ -5,9 +5,10 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager_2 : Pawn
 {
-    public int playerNum = 1; 
+    public int playerNum = 1;
+    public float jumpValue = 50000f;
     public float moveSpeed = 10f;
-    public float jumpSpeed = 20f;
+    public float jumpSpeed = 50f;
     public Animator anim;
     public SpriteRenderer player;
 
@@ -16,7 +17,8 @@ public class PlayerManager_2 : Pawn
     public bool WalkLeft = false;
     public bool jumpAttack = false;
     public bool attack1 = false;
-
+    public bool attack2 = false;
+    public bool attack3 = false;
 
     public float timer = 0;
     public float keyDelay = .2f;
@@ -31,7 +33,6 @@ public class PlayerManager_2 : Pawn
 
     public void Update()
     {
-
         if (Input.GetAxis("Horizontal") > 0f)
         {
             WalkLeft = false;
@@ -61,15 +62,20 @@ public class PlayerManager_2 : Pawn
 
     public void FixedUpdate()
     {
-        if (rb.velocity.y < 0)
+        if (rb.velocity.y <= 0)
         {
-            rb.velocity += Vector3.up * Physics.gravity.y * 50 * Time.deltaTime;
+            rb.velocity += Vector3.up * Physics.gravity.y * 10f * jumpValue * Time.deltaTime;
         }
     }
 
     private void OnCollisionEnter(Collision col)
     {
         isGrounded = true;
+        if (jumpAttack == true)
+        {
+            jumpAttack = false;
+            anim.SetBool("jumpAttack", jumpAttack);
+        }
         anim.SetBool("isGrounded", isGrounded);
     }
     private void OnCollisionExit()
@@ -93,13 +99,20 @@ public class PlayerManager_2 : Pawn
     
     public void Jump()
     {
-        rb.AddForce(Vector3.up * jumpSpeed, ForceMode.VelocityChange);
+        rb.AddForce(Vector3.up * jumpSpeed * 10f, ForceMode.VelocityChange);
     }
 
     public void Attack()
     {
         anim.SetBool("attack1", attack1);
-
+    }
+    public void Attack2()
+    {
+        anim.SetBool("attack2", attack2);
+    }
+    public void Attack3()
+    {
+        anim.SetBool("attack3", attack3);
     }
 
     public void JumpAttack()
