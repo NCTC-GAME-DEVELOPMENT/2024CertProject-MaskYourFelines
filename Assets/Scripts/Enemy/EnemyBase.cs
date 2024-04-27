@@ -27,7 +27,7 @@ public class EnemyBase : MonoBehaviour
         playerManager = playerObj.GetComponent<PlayerManager>();
         think = MoveToPlayer;
     }
-    // Update is called once per frame
+
     protected virtual void Update()
     {
         think?.Invoke();

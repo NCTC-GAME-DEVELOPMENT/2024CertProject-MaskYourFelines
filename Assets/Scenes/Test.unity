@@ -344,6 +344,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grunt
       objectReference: {fileID: 0}
+    - target: {fileID: 3393981968413072136, guid: 74df9487231cc8a4a953cb75a10408b4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6807223163093752093, guid: 74df9487231cc8a4a953cb75a10408b4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 9.1
@@ -1211,7 +1215,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1615795323544376241, guid: fab9445b0875b9d45a7a29e4c1c4403f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3002724619321599225, guid: fab9445b0875b9d45a7a29e4c1c4403f, type: 3}
       propertyPath: damage

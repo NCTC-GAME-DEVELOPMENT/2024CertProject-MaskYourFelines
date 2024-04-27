@@ -16,7 +16,9 @@ public class Grunt : EnemyBase
     private float activeTime = 0.1f;
     private float idleTime = 2f;
     private float hitStunTimer = 0f;
+
     private int doSomething = 0;
+
     private bool trigger = false;
     private bool dead = false;
 
@@ -26,7 +28,7 @@ public class Grunt : EnemyBase
     protected override void InitializeObject()
     {
         base.InitializeObject();
-        health = 40;
+        health = 25;
         damage = 5;
         animator = sprite.GetComponent<Animator>();
         spriteRenderer = sprite.GetComponent<SpriteRenderer>();
