@@ -1,8 +1,9 @@
 using System.Collections;
+using System.Collections.Generic;
+using System.Security;
 using UnityEngine;
-using UnityEngine.InputSystem.Processors;
 
-public class Grunt : EnemyBase
+public class Boss : EnemyBase
 {
     [SerializeField] private GameObject hitBox;
     [SerializeField] private GameObject attackPoint1;
@@ -10,6 +11,7 @@ public class Grunt : EnemyBase
     [SerializeField] private GameObject sprite;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private Rigidbody rb;
 
     private float windup = 0.5f;
     private float attackTime = 0.333f;
@@ -18,23 +20,30 @@ public class Grunt : EnemyBase
     private float hitStunTimer = 0f;
 
     private int doSomething = 0;
+    public int balloons = 3;
 
     private bool trigger = false;
+    private bool flying = true;
     private bool dead = false;
 
     private float blinkDuration = 1f;
     private float blinkInterval = 0.2f;
     private Coroutine blinkCoroutine;
+
     protected override void InitializeObject()
     {
         base.InitializeObject();
-        health = 25;
-        damage = 5;
+        health = 50;
+        damage = 10;
         animator = sprite.GetComponent<Animator>();
         spriteRenderer = sprite.GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody>();
+        navMeshAgent.enabled = false;
+        rb.isKinematic = true;
         think = Idle;
     }
 
+    // Update is called once per frame
     protected override void Update()
     {
         base.Update();
@@ -57,7 +66,7 @@ public class Grunt : EnemyBase
         if (hitStunTimer > 0f)
         {
             hitStunTimer -= Time.deltaTime;
-            if (hitStunTimer <= 0f)
+            if (hitStunTimer  < 0f)
             {
                 ResetTimers();
                 think = MoveToPlayer;
@@ -70,13 +79,50 @@ public class Grunt : EnemyBase
             }
         }
     }
+
+    void Flying()
+    {
+        if (balloons == 3 && !trigger)
+        {
+            animator.SetTrigger("isFlyingIdle3");
+            trigger = true;
+        }
+        if (balloons == 2 && !trigger)
+        {
+            animator.SetTrigger("isFlyingIdle2");
+            trigger = true;
+        }
+        if (balloons == 1 && !trigger)
+        {
+            animator.SetTrigger("isFlyingIdle1");
+            trigger = true;
+        }
+        if (balloons == 0 && !trigger)
+        {
+            rb.isKinematic = false;
+            rb.useGravity = true;
+            if (transform.position.y <= 1)
+            {
+                flying = false;
+                rb.isKinematic = true;
+                rb.useGravity = false;
+                navMeshAgent.enabled = true;
+                think = MoveToPlayer;
+            }
+        }
+    }
     protected override void MoveToPlayer()
     {
+        if (flying)
+        {
+            think = Flying;
+            return;
+        }
         base.MoveToPlayer();
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
-        if (distanceToPlayer <= 3)
+        if (distanceToPlayer <= 4)
         {
             ResetTimers();
             navMeshAgent.SetDestination(transform.position);
@@ -93,7 +139,7 @@ public class Grunt : EnemyBase
     protected override void Attack()
     {
         windup -= Time.deltaTime; //0.5
-        if (windup <= 0)
+        if (windup < 0)
         {
             attackTime -= Time.deltaTime; //0.333
             if (!trigger)
@@ -103,7 +149,7 @@ public class Grunt : EnemyBase
             }
             if (attackTime <= 0)
             {
-                activeTime -= Time.deltaTime; //0.1
+                activeTime -= Time.deltaTime;
                 BoxCollider collider = hitBox.GetComponent<BoxCollider>();
                 collider.enabled = true;
                 if (activeTime <= 0)
@@ -117,7 +163,7 @@ public class Grunt : EnemyBase
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
-        if (distanceToPlayer > 3)
+        if (distanceToPlayer > 4)
         {
             ResetTimers();
             think = MoveToPlayer;
@@ -126,6 +172,11 @@ public class Grunt : EnemyBase
 
     private void Idle()
     {
+        if (balloons > 0)
+        {
+            think = Flying;
+            return;
+        }
         if (!trigger)
         {
             trigger = true;
@@ -145,13 +196,16 @@ public class Grunt : EnemyBase
             if (random == 2)
             {
                 ResetTimers();
-            }
+            }    
         }
     }
 
     private void DoNothing()
     {
-        navMeshAgent.SetDestination(transform.position);
+        if (!flying)
+        {
+            navMeshAgent.SetDestination(transform.position);
+        }   
     }
 
     private void Death()
@@ -177,14 +231,33 @@ public class Grunt : EnemyBase
 
         Destroy(gameObject);
     }
+
     protected override void TakeDamage(int damage)
     {
+        if (!dead && balloons > 0)
+        {
+            balloons--;
+            if (balloons == 2)
+            {
+                animator.SetTrigger("isFlyingDamaged3");
+            }
+            if (balloons == 1)
+            {
+                animator.SetTrigger("isFlyingDamaged2");
+            }
+            if (balloons == 0)
+            {
+                animator.SetTrigger("isFlyingDamaged1");
+            }
+            HitStun(0.25f);
+            return;
+        }    
         base.TakeDamage(damage);
         if (!dead)
         {
             animator.SetTrigger("isDamaged");
             HitStun(0.25f);
-        }
+        }    
     }
 
     private void HitStun(float hitStun)
