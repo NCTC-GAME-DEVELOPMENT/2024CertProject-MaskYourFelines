@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.Intrinsics;
 using UnityEngine;
-using UnityEngine.InputSystem; 
+using UnityEngine.InputSystem;
 
 public class PlayerManager_2 : Pawn
 {
@@ -20,9 +21,15 @@ public class PlayerManager_2 : Pawn
     public bool attack2 = false;
     public bool attack3 = false;
 
-    public float timer = 0;
     public float keyDelay = .2f;
+    public float nextFireTime = 0f;
+    public int numberOfHits = 0;
+    public float lastHitTime = 0;
 
+    float maxHitDelay = 1;
+    public int buttonPresses = 0;
+    public float lastCheckTime;
+    public bool inputBool;
 
     Rigidbody rb;
 
@@ -47,7 +54,7 @@ public class PlayerManager_2 : Pawn
         }
         if (Input.GetAxis("Horizontal") < 0f)
         {
-            
+
             WalkRight = false;
             WalkLeft = true;
             player.flipX = true;
@@ -58,6 +65,35 @@ public class PlayerManager_2 : Pawn
             WalkLeft = false;
             anim.SetBool("WalkLeft", WalkLeft);
         }
+
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f && anim.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
+        {
+            anim.SetBool("attack1", false);
+        }
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f && anim.GetCurrentAnimatorStateInfo(0).IsName("attack2"))
+        {
+            anim.SetBool("attack2", false);
+        }
+        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f && anim.GetCurrentAnimatorStateInfo(0).IsName("attack3"))
+        {
+            anim.SetBool("attack3", false);
+            numberOfHits = 0;
+        }
+
+        if (Time.time - lastHitTime > maxHitDelay)
+        {
+            numberOfHits = 0;
+        }
+
+        if (Time.time > nextFireTime)
+        {
+            if (inputBool)
+            {
+                inputBool = false;
+                ComboAttack();
+            }
+        }
+
     }
 
     public void FixedUpdate()
@@ -75,6 +111,7 @@ public class PlayerManager_2 : Pawn
         {
             jumpAttack = false;
             anim.SetBool("jumpAttack", jumpAttack);
+            anim.SetBool("attack1", false);
         }
         anim.SetBool("isGrounded", isGrounded);
     }
@@ -93,15 +130,62 @@ public class PlayerManager_2 : Pawn
         moveDir.z = value.x;
         moveDir.x = -value.y;
 
-        rb.velocity = moveDir * moveSpeed; 
+        rb.velocity = moveDir * moveSpeed;
 
     }
-    
+
     public void Jump()
     {
         rb.AddForce(Vector3.up * jumpSpeed * 10f, ForceMode.VelocityChange);
     }
 
+    public void JumpAttack()
+    {
+        anim.SetBool("jumpAttack", jumpAttack);
+    }
+
+    //check to see if PC values can be sent to PM methods directly
+    //Anwser: YES
+    public void Test(bool value)
+    {
+        Debug.Log("IT WORKED!");
+    }
+    
+    public void ComboAttack()
+    {
+        lastHitTime = Time.time;
+        numberOfHits++;
+        if (numberOfHits == 1)
+        {
+            anim.SetBool("attack1", true);
+        }
+        numberOfHits = Mathf.Clamp(numberOfHits, 0, 3);
+
+        if (numberOfHits >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f && anim.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
+        {
+            anim.SetBool("attack1", false);
+            anim.SetBool("attack2", true);
+        }
+        if (numberOfHits >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f && anim.GetCurrentAnimatorStateInfo(0).IsName("attack2"))
+        {
+            anim.SetBool("attack2", false);
+            anim.SetBool("attack3", true);
+        }
+    
+    }
+
+    public void SendAttackInput(bool value)
+    {
+        if(value)
+        {
+            inputBool = true;
+        }
+        else
+        {
+            inputBool = false;
+        }
+    }
+    /*
     public void Attack()
     {
         anim.SetBool("attack1", attack1);
@@ -114,10 +198,5 @@ public class PlayerManager_2 : Pawn
     {
         anim.SetBool("attack3", attack3);
     }
-
-    public void JumpAttack()
-    {
-        anim.SetBool("jumpAttack", jumpAttack);
-    }
-
+    */
 }

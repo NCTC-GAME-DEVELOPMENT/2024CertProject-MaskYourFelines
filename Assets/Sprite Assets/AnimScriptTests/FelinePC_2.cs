@@ -49,6 +49,12 @@ public class FelinePC_2 : PlayerController
 
     public void Attack(bool value)
     {
+        if (value)
+        {
+            player.SendAttackInput(value);
+        }
+
+        /*
         if (InputCurrent.buttonEast && player.isGrounded == true)
         {
             player.attack1 = true;
@@ -69,7 +75,15 @@ public class FelinePC_2 : PlayerController
             player.attack2 = false;
             player.Attack2();
         }
+        */
 
+    }
 
+    public void Test(bool value)
+    {
+        if (value)
+        {
+            player.Test(InputCurrent.buttonEast);
+        }
     }
 }
