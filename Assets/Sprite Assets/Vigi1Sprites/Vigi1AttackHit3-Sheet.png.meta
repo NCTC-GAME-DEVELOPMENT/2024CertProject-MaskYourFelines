@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -147,7 +147,112 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Vigi1AttackHit3-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 5
+        width: 67
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9876c29899a843248bd41a43545f68e3
+      internalID: 651101489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vigi1AttackHit3-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 5
+        width: 67
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1cf2d7dc635f1ae4fab215a7ba781cfa
+      internalID: -1216319109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vigi1AttackHit3-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 1
+        width: 62
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc62dfab36dd7004492d6fe4efb6e91c
+      internalID: 965851382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vigi1AttackHit3-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 341
+        y: 5
+        width: 110
+        height: 91
+      alignment: 9
+      pivot: {x: 0.27032304, y: 0.50000006}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3a0155df5d6e764281e075d35d201a8
+      internalID: -760527716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Vigi1AttackHit3-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 1
+        width: 62
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d7053c9fc00e564982a1145aa226bd2
+      internalID: 1490860517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -158,7 +263,12 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Vigi1AttackHit3-Sheet_0: 651101489
+      Vigi1AttackHit3-Sheet_1: -1216319109
+      Vigi1AttackHit3-Sheet_2: 965851382
+      Vigi1AttackHit3-Sheet_3: -760527716
+      Vigi1AttackHit3-Sheet_4: 1490860517
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

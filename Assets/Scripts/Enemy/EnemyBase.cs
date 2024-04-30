@@ -27,10 +27,14 @@ public class EnemyBase : MonoBehaviour
         playerManager = playerObj.GetComponent<PlayerManager>();
         think = MoveToPlayer;
     }
-    // Update is called once per frame
-    void Update()
+
+    protected virtual void Update()
     {
         think?.Invoke();
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            TakeDamage(5);
+        }
     }
 
     protected virtual void MoveToPlayer()
@@ -41,8 +45,8 @@ public class EnemyBase : MonoBehaviour
     {
 
     }
-    protected virtual void TakeDamage()
+    protected virtual void TakeDamage(int damage)
     {
-
+        health -= damage;
     }
 }
