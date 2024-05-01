@@ -7,7 +7,7 @@ public class EnemyBase : MonoBehaviour
 {
     protected NavMeshAgent navMeshAgent;
     protected GameObject playerObj;
-    protected PlayerManager playerManager;
+    protected PlayerManager_2 playerManager;
 
     public int health;
     public int damage;
@@ -23,8 +23,8 @@ public class EnemyBase : MonoBehaviour
     protected virtual void InitializeObject()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        playerObj = FindObjectOfType<PlayerManager>().gameObject;
-        playerManager = playerObj.GetComponent<PlayerManager>();
+        playerObj = GameObject.FindGameObjectWithTag("Player");
+        playerManager = playerObj.GetComponent<PlayerManager_2>();
         think = MoveToPlayer;
     }
 
