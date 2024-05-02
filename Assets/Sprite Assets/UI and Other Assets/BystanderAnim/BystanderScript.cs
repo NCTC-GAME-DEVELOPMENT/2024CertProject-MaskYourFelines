@@ -23,15 +23,15 @@ public class BystanderScript : MonoBehaviour
             anim.SetTrigger("isDefault");
             idle = false;
         }
-        if (player.transform.position.z > transform.position.z + 2)
+        if (player.transform.position.z > transform.position.z + 3)
         {
             anim.SetTrigger("isLookRight");
         }
-        if (player.transform.position.z < transform.position.z - 2)
+        if (player.transform.position.z < transform.position.z - 3)
         {
             anim.SetTrigger("isLookLeft");
         }
-        if (player.transform.position.z >= transform.position.z - 2 && player.transform.position.z <= transform.position.z + 2)
+        if (player.transform.position.z >= transform.position.z - 3 && player.transform.position.z <= transform.position.z + 3)
         {
             anim.SetTrigger("isLookDown");
         }
