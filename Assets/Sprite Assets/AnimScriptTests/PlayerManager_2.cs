@@ -17,9 +17,9 @@ public class PlayerManager_2 : Pawn
     public bool WalkRight = false;
     public bool WalkLeft = false;
     public bool jumpAttack = false;
-    public bool attack1 = false;
-    public bool attack2 = false;
-    public bool attack3 = false;
+    public bool lastMovedLeft;
+    public bool lastMovedRight;
+    public float xAxisDif;
 
     public float keyDelay = .2f;
     public float nextFireTime = 0f;
@@ -44,6 +44,7 @@ public class PlayerManager_2 : Pawn
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        xAxisDif = gameObject.transform.position.x;
     }
 
     public void Update()
@@ -52,7 +53,9 @@ public class PlayerManager_2 : Pawn
         if (Input.GetAxis("Horizontal") > 0f)
         {
             WalkLeft = false;
+            lastMovedLeft = false;
             WalkRight = true;
+            lastMovedRight = true;
             player.flipX = false;
             anim.SetBool("WalkRight", WalkRight);
         }
@@ -63,9 +66,10 @@ public class PlayerManager_2 : Pawn
         }
         if (Input.GetAxis("Horizontal") < 0f)
         {
-
             WalkRight = false;
+            lastMovedRight = false;
             WalkLeft = true;
+            lastMovedLeft = true;
             player.flipX = true;
             anim.SetBool("WalkLeft", WalkLeft);
         }
@@ -80,6 +84,16 @@ public class PlayerManager_2 : Pawn
             anim.SetTrigger("isIdle");
             idle = false;
         }
+
+        if (gameObject.transform.position.x != xAxisDif && lastMovedRight == true)
+        {
+            anim.SetBool("WalkRight", true);
+        }
+        if (gameObject.transform.position.x != xAxisDif && lastMovedLeft == true)
+        {
+            anim.SetBool("WalkLeft", true);
+        }
+        xAxisDif = gameObject.transform.position.x;
 
         if (Time.time - lastHitTime > maxHitDelay)
         {

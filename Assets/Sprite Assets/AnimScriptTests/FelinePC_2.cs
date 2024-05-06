@@ -25,6 +25,7 @@ public class FelinePC_2 : PlayerController
 
     public void Move(Vector2 value)
     {
+        Debug.Log("Input Move");
         player.Move(value); 
     }
 
@@ -38,6 +39,7 @@ public class FelinePC_2 : PlayerController
             if (value && player.isGrounded == true)
             {
                 player.Jump();
+                Debug.Log("Input Jump");
             }
 
             if (player.isGrounded == false && InputCurrent.buttonEast)
@@ -51,6 +53,7 @@ public class FelinePC_2 : PlayerController
     {
         if (value && player.isGrounded == true)
         {
+            Debug.Log("Input Attack");
             player.ComboAttack();
         }
 
