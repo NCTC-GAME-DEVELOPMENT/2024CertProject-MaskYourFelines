@@ -7,7 +7,6 @@ public class BystanderScript : MonoBehaviour
     public PlayerManager_2 player;
     public Animator anim;
     public SpriteRenderer bystander;
-    public bool idle = true;
 
     // Start is called before the first frame update
     void Start()
@@ -18,20 +17,19 @@ public class BystanderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (idle)
+        if (player.transform.position.z >= transform.position.z + 30 || player.transform.position.z <= transform.position.z - 30)
         {
             anim.SetTrigger("isDefault");
-            idle = false;
         }
-        if (player.transform.position.z > transform.position.z + 3)
+        if (player.transform.position.z > transform.position.z + 4 && player.transform.position.z < transform.position.z + 30)
         {
             anim.SetTrigger("isLookRight");
         }
-        if (player.transform.position.z < transform.position.z - 3)
+        if (player.transform.position.z < transform.position.z - 4 && player.transform.position.z > transform.position.z - 30)
         {
             anim.SetTrigger("isLookLeft");
         }
-        if (player.transform.position.z >= transform.position.z - 3 && player.transform.position.z <= transform.position.z + 3)
+        if (player.transform.position.z >= transform.position.z - 4 && player.transform.position.z <= transform.position.z + 4)
         {
             anim.SetTrigger("isLookDown");
         }

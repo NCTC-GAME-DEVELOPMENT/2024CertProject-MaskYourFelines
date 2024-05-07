@@ -17,9 +17,6 @@ public class PlayerManager_2 : Pawn
     public bool WalkRight = false;
     public bool WalkLeft = false;
     public bool jumpAttack = false;
-    public bool lastMovedLeft;
-    public bool lastMovedRight;
-    public float xAxisDif;
 
     public float keyDelay = .2f;
     public float nextFireTime = 0f;
@@ -44,7 +41,6 @@ public class PlayerManager_2 : Pawn
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        xAxisDif = gameObject.transform.position.x;
     }
 
     public void Update()
@@ -53,30 +49,26 @@ public class PlayerManager_2 : Pawn
         if (Input.GetAxis("Horizontal") > 0f)
         {
             WalkLeft = false;
-            lastMovedLeft = false;
             WalkRight = true;
-            lastMovedRight = true;
             player.flipX = false;
-            anim.SetBool("WalkRight", WalkRight);
+            anim.SetBool("WalkRight", true);
         }
         else
         {
             WalkRight = false;
-            anim.SetBool("WalkRight", WalkRight);
+            anim.SetBool("WalkRight", false);
         }
         if (Input.GetAxis("Horizontal") < 0f)
         {
             WalkRight = false;
-            lastMovedRight = false;
             WalkLeft = true;
-            lastMovedLeft = true;
             player.flipX = true;
-            anim.SetBool("WalkLeft", WalkLeft);
+            anim.SetBool("WalkLeft", true);
         }
         else
         {
             WalkLeft = false;
-            anim.SetBool("WalkLeft", WalkLeft);
+            anim.SetBool("WalkLeft", false);
         }
 
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && idle)
@@ -85,20 +77,9 @@ public class PlayerManager_2 : Pawn
             idle = false;
         }
 
-        if (gameObject.transform.position.x != xAxisDif && lastMovedRight == true)
-        {
-            anim.SetBool("WalkRight", true);
-        }
-        if (gameObject.transform.position.x != xAxisDif && lastMovedLeft == true)
-        {
-            anim.SetBool("WalkLeft", true);
-        }
-        xAxisDif = gameObject.transform.position.x;
-
         if (Time.time - lastHitTime > maxHitDelay)
         {
             numberOfHits = 0;
-            Debug.Log(Time.time - lastHitTime);
         }
 
         if (attacking)
@@ -129,12 +110,12 @@ public class PlayerManager_2 : Pawn
             anim.SetBool("jumpAttack", jumpAttack);
             anim.SetBool("attack1", false);
         }
-        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("jump", false);
     }
     private void OnCollisionExit()
     {
         isGrounded = false;
-        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("jump", true);
     }
 
     // Left Stick Mapping 
@@ -152,7 +133,8 @@ public class PlayerManager_2 : Pawn
 
     public void Jump()
     {
-        rb.AddForce(Vector3.up * jumpSpeed * 10f, ForceMode.VelocityChange);
+        rb.AddForce(Vector3.up * jumpSpeed * 10f, ForceMode.Impulse);
+        Debug.Log("Jumping Now");
     }
 
     public void JumpAttack()
