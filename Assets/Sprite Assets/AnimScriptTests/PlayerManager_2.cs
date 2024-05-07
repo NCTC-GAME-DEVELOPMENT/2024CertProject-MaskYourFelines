@@ -13,24 +13,33 @@ public class PlayerManager_2 : Pawn
     public Animator anim;
     public SpriteRenderer player;
 
+    [SerializeField] private Transform playerBody;
+    [SerializeField] private GameObject attackPoint1;
+    [SerializeField] private GameObject attackPoint2;
+    [SerializeField] private GameObject attackPoint3;
+    [SerializeField] private GameObject attackJump;
+
+    float defaultPoint1;
+    float defaultPoint2;
+    float defaultPoint3;
+    float defaultPointJump;
+
     public bool isGrounded = true;
     public bool WalkRight = false;
     public bool WalkLeft = false;
     public bool jumpAttack = false;
 
-    public float keyDelay = .2f;
-    public float nextFireTime = 0f;
     public int numberOfHits = 0;
     public float lastHitTime = 0;
 
-    float maxHitDelay = 1;
-    public int buttonPresses = 0;
-    public float lastCheckTime;
-    public bool inputBool;
-    public bool idle = true;
-    public float attackTime;
-    public bool attacking = false;
-    public bool aboveThree;
+    private float maxHitDelay = 1;
+    private int buttonPresses = 0;
+    private float lastCheckTime;
+    private bool inputBool;
+    private bool idle = true;
+    private float attackTime;
+    private bool attacking = false;
+    private bool aboveThree;
 
     float timer = 0;
     float timerSet;
@@ -41,16 +50,20 @@ public class PlayerManager_2 : Pawn
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        defaultPoint1 = +attackPoint1.transform.position.z;
+        defaultPoint2 = +attackPoint2.transform.position.z;
+        defaultPoint3 = +attackPoint3.transform.position.z;
+        defaultPointJump = +attackJump.transform.position.z;
     }
 
     public void Update()
     {
-
         if (Input.GetAxis("Horizontal") > 0f)
         {
             WalkLeft = false;
             WalkRight = true;
-            player.flipX = false;
+            //player.flipX = false;
+            transform.eulerAngles = new Vector3(0, 270, 0);
             anim.SetBool("WalkRight", true);
         }
         else
@@ -62,7 +75,8 @@ public class PlayerManager_2 : Pawn
         {
             WalkRight = false;
             WalkLeft = true;
-            player.flipX = true;
+            //player.flipX = true;
+            transform.eulerAngles = new Vector3(0, 90, 0);
             anim.SetBool("WalkLeft", true);
         }
         else

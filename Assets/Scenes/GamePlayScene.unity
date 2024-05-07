@@ -2210,6 +2210,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5142999903369563785, guid: 1b222f17807dcc948ac5b4028a03e7a7, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1791970582}
+    - target: {fileID: 5901732403863551868, guid: 1b222f17807dcc948ac5b4028a03e7a7, type: 3}
+      propertyPath: attackJump
+      value: 
+      objectReference: {fileID: 766811833}
+    - target: {fileID: 5901732403863551868, guid: 1b222f17807dcc948ac5b4028a03e7a7, type: 3}
+      propertyPath: attackPoint1
+      value: 
+      objectReference: {fileID: 1106008462}
+    - target: {fileID: 5901732403863551868, guid: 1b222f17807dcc948ac5b4028a03e7a7, type: 3}
+      propertyPath: attackPoint2
+      value: 
+      objectReference: {fileID: 2125483312}
+    - target: {fileID: 5901732403863551868, guid: 1b222f17807dcc948ac5b4028a03e7a7, type: 3}
+      propertyPath: attackPoint3
+      value: 
+      objectReference: {fileID: 1424999512}
     - target: {fileID: 6175953324329113618, guid: 1b222f17807dcc948ac5b4028a03e7a7, type: 3}
       propertyPath: m_Name
       value: PlayerRootFinal
