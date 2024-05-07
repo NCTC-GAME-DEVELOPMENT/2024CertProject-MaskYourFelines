@@ -261,7 +261,7 @@ public class Charger : EnemyBase
     {
         if (other.CompareTag("Player") && charging && other.GetComponent<PlayerHealth>() != null)
         {
-            other.GetComponent<PlayerHealth>().CurrentHealth -= chargeDamage;
+            other.GetComponent<PlayerHealth>().takeDamage(chargeDamage);
             Debug.Log("CHARGED PLAYER (" + other.GetComponent<PlayerHealth>().CurrentHealth + " HP)");
         }
     }
