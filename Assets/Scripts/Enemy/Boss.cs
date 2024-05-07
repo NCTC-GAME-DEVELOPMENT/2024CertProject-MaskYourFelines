@@ -232,7 +232,7 @@ public class Boss : EnemyBase
         Destroy(gameObject);
     }
 
-    protected override void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         if (!dead && balloons > 0)
         {

@@ -45,7 +45,7 @@ public class EnemyBase : MonoBehaviour
     {
 
     }
-    protected virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         health -= damage;
     }

@@ -13,6 +13,7 @@ public class PlayerManager_2 : Pawn
     public float jumpSpeed = 50f;
     public Animator anim;
     public SpriteRenderer player;
+    private float groundCheckDistance = 4.530671f;
 
     [SerializeField] private Transform playerBody;
     [SerializeField] private GameObject attackPoint1;
@@ -20,10 +21,10 @@ public class PlayerManager_2 : Pawn
     [SerializeField] private GameObject attackPoint3;
     [SerializeField] private GameObject attackJump;
 
-    private int damage1 = 4;
-    private int damage2 = 5;
-    private int damage3 = 12;
-    private int damageJump = 9;
+    private int damage1 = 5;
+    private int damage2 = 10;
+    private int damage3 = 15;
+    private int damageJump = 10;
 
     BoxCollider collider1;
     BoxCollider collider2;
@@ -64,6 +65,7 @@ public class PlayerManager_2 : Pawn
 
     public void Update()
     {
+
         if (Input.GetAxis("Horizontal") > 0f)
         {
             WalkLeft = false;
@@ -115,6 +117,25 @@ public class PlayerManager_2 : Pawn
                 attacking = false;
             }
         }
+
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, -transform.up, out hit, groundCheckDistance))
+        {
+            isGrounded = true;
+            colliderJump.enabled = false;
+            if (jumpAttack == true)
+            {
+                jumpAttack = false;
+                anim.SetBool("jumpAttack", jumpAttack);
+                anim.SetBool("attack1", false);
+            }
+            anim.SetBool("jump", false);
+        }
+        else
+        {
+            isGrounded = false;
+            anim.SetBool("jump", true);
+        }
     }
 
     public void FixedUpdate()
@@ -125,6 +146,7 @@ public class PlayerManager_2 : Pawn
         }
     }
 
+    /*
     private void OnCollisionEnter(Collision col)
     {
         isGrounded = true;
@@ -142,6 +164,7 @@ public class PlayerManager_2 : Pawn
         isGrounded = false;
         anim.SetBool("jump", true);
     }
+    */
 
     // Left Stick Mapping 
     // A/D on X
@@ -179,9 +202,12 @@ public class PlayerManager_2 : Pawn
     {
         lastHitTime = Time.time;
         numberOfHits++;
+        isGrounded = true;
         if (numberOfHits == 1)
         {
             anim.SetTrigger("attack1");
+            colliderJump.enabled = false;
+            isGrounded = true;
             collider1.enabled = true;
             attackTime = 0.417f;
             attacking = true;
@@ -192,6 +218,8 @@ public class PlayerManager_2 : Pawn
         {
             collider1.enabled = false;
             anim.SetTrigger("attack2");
+            isGrounded = true;
+            colliderJump.enabled = false;
             BoxCollider collider = attackPoint2.GetComponent<BoxCollider>();
             collider2.enabled = true;
             attackTime = 0.417f;
@@ -201,6 +229,8 @@ public class PlayerManager_2 : Pawn
         {
             collider2.enabled = false;
             anim.SetTrigger("attack3");
+            isGrounded = true;
+            colliderJump.enabled = false;
             BoxCollider collider = attackPoint3.GetComponent<BoxCollider>();
             collider3.enabled = true;
             attackTime = 0.750f;
@@ -214,9 +244,23 @@ public class PlayerManager_2 : Pawn
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy") && collider1.enabled == true /*&& other.GetComponent<EnemyBase.health>*/)
-        {
+        EnemyBase eb = other.gameObject.GetComponentInParent<EnemyBase>();
 
+        if (other.CompareTag("Enemy") && collider1.enabled == true)
+        {
+            eb.TakeDamage(damage1);
+        }
+        if (other.CompareTag("Enemy") && collider2.enabled == true)
+        {
+            eb.TakeDamage(damage2);
+        }
+        if (other.CompareTag("Enemy") && collider3.enabled == true)
+        {
+            eb.TakeDamage(damage3);
+        }
+        if (other.CompareTag("Enemy") && colliderJump.enabled == true)
+        {
+            eb.TakeDamage(damageJump);
         }
     }
 }
