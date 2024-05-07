@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,10 +20,15 @@ public class PlayerManager_2 : Pawn
     [SerializeField] private GameObject attackPoint3;
     [SerializeField] private GameObject attackJump;
 
-    float defaultPoint1;
-    float defaultPoint2;
-    float defaultPoint3;
-    float defaultPointJump;
+    private int damage1 = 4;
+    private int damage2 = 5;
+    private int damage3 = 12;
+    private int damageJump = 9;
+
+    BoxCollider collider1;
+    BoxCollider collider2;
+    BoxCollider collider3;
+    BoxCollider colliderJump;
 
     public bool isGrounded = true;
     public bool WalkRight = false;
@@ -50,10 +56,10 @@ public class PlayerManager_2 : Pawn
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        defaultPoint1 = +attackPoint1.transform.position.z;
-        defaultPoint2 = +attackPoint2.transform.position.z;
-        defaultPoint3 = +attackPoint3.transform.position.z;
-        defaultPointJump = +attackJump.transform.position.z;
+        collider1 = attackPoint1.GetComponent<BoxCollider>();
+        collider2 = attackPoint2.GetComponent<BoxCollider>();
+        collider3 = attackPoint3.GetComponent<BoxCollider>();
+        colliderJump = attackJump.GetComponent<BoxCollider>();
     }
 
     public void Update()
@@ -88,6 +94,10 @@ public class PlayerManager_2 : Pawn
         if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && idle)
         {
             anim.SetTrigger("isIdle");
+            collider1.enabled = false;
+            collider2.enabled = false;
+            collider3.enabled = false;
+            colliderJump.enabled = false;
             idle = false;
         }
 
@@ -118,6 +128,7 @@ public class PlayerManager_2 : Pawn
     private void OnCollisionEnter(Collision col)
     {
         isGrounded = true;
+        colliderJump.enabled = false;
         if (jumpAttack == true)
         {
             jumpAttack = false;
@@ -154,6 +165,7 @@ public class PlayerManager_2 : Pawn
     public void JumpAttack()
     {
         anim.SetBool("jumpAttack", jumpAttack);
+        colliderJump.enabled = true;
     }
 
     //check to see if PC values can be sent to PM methods directly
@@ -170,6 +182,7 @@ public class PlayerManager_2 : Pawn
         if (numberOfHits == 1)
         {
             anim.SetTrigger("attack1");
+            collider1.enabled = true;
             attackTime = 0.417f;
             attacking = true;
         }
@@ -177,20 +190,33 @@ public class PlayerManager_2 : Pawn
 
         if (numberOfHits == 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.417f)
         {
+            collider1.enabled = false;
             anim.SetTrigger("attack2");
+            BoxCollider collider = attackPoint2.GetComponent<BoxCollider>();
+            collider2.enabled = true;
             attackTime = 0.417f;
             attacking = true;
         }
         if (numberOfHits >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.417f && !aboveThree)
         {
+            collider2.enabled = false;
             anim.SetTrigger("attack3");
+            BoxCollider collider = attackPoint3.GetComponent<BoxCollider>();
+            collider3.enabled = true;
             attackTime = 0.750f;
             attacking = true;
             if (numberOfHits > 3)
             {
                 aboveThree = true;
+                collider3.enabled = false;
             }
         }
-    
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy") && collider1.enabled == true /*&& other.GetComponent<EnemyBase.health>*/)
+        {
+
+        }
     }
 }

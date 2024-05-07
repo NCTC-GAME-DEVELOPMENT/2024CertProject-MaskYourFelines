@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    string Stage1_Scene = "Stage1";
+    string Stage1_Scene = "GamePlayStage";
 
          public void stage1()
     {
