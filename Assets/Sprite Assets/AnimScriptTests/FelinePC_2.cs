@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FelinePC_2 : PlayerController
 {
-    public PlayerManager_2 player; 
+    public PlayerManager_2 player;
     
 
     protected override void Start()
@@ -49,9 +49,9 @@ public class FelinePC_2 : PlayerController
 
     public void Attack(bool value)
     {
-        if (value)
+        if (value && player.isGrounded == true)
         {
-            player.SendAttackInput(value);
+            player.ComboAttack();
         }
 
         /*

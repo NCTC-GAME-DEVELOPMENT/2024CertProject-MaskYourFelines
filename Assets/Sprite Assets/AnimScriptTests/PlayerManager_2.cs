@@ -17,9 +17,6 @@ public class PlayerManager_2 : Pawn
     public bool WalkRight = false;
     public bool WalkLeft = false;
     public bool jumpAttack = false;
-    public bool attack1 = false;
-    public bool attack2 = false;
-    public bool attack3 = false;
 
     public float keyDelay = .2f;
     public float nextFireTime = 0f;
@@ -30,6 +27,14 @@ public class PlayerManager_2 : Pawn
     public int buttonPresses = 0;
     public float lastCheckTime;
     public bool inputBool;
+    public bool idle = true;
+    public float attackTime;
+    public bool attacking = false;
+    public bool aboveThree;
+
+    float timer = 0;
+    float timerSet;
+    int comboHits;
 
     Rigidbody rb;
 
@@ -40,44 +45,36 @@ public class PlayerManager_2 : Pawn
 
     public void Update()
     {
+
         if (Input.GetAxis("Horizontal") > 0f)
         {
             WalkLeft = false;
             WalkRight = true;
             player.flipX = false;
-            anim.SetBool("WalkRight", WalkRight);
+            anim.SetBool("WalkRight", true);
         }
         else
         {
             WalkRight = false;
-            anim.SetBool("WalkRight", WalkRight);
+            anim.SetBool("WalkRight", false);
         }
         if (Input.GetAxis("Horizontal") < 0f)
         {
-
             WalkRight = false;
             WalkLeft = true;
             player.flipX = true;
-            anim.SetBool("WalkLeft", WalkLeft);
+            anim.SetBool("WalkLeft", true);
         }
         else
         {
             WalkLeft = false;
-            anim.SetBool("WalkLeft", WalkLeft);
+            anim.SetBool("WalkLeft", false);
         }
 
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f && anim.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
+        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0 && idle)
         {
-            anim.SetBool("attack1", false);
-        }
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f && anim.GetCurrentAnimatorStateInfo(0).IsName("attack2"))
-        {
-            anim.SetBool("attack2", false);
-        }
-        if (anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f && anim.GetCurrentAnimatorStateInfo(0).IsName("attack3"))
-        {
-            anim.SetBool("attack3", false);
-            numberOfHits = 0;
+            anim.SetTrigger("isIdle");
+            idle = false;
         }
 
         if (Time.time - lastHitTime > maxHitDelay)
@@ -85,15 +82,15 @@ public class PlayerManager_2 : Pawn
             numberOfHits = 0;
         }
 
-        if (Time.time > nextFireTime)
+        if (attacking)
         {
-            if (inputBool)
+            attackTime -= Time.deltaTime;
+            if (attackTime <= 0)
             {
-                inputBool = false;
-                ComboAttack();
+                idle = true;
+                attacking = false;
             }
         }
-
     }
 
     public void FixedUpdate()
@@ -113,12 +110,12 @@ public class PlayerManager_2 : Pawn
             anim.SetBool("jumpAttack", jumpAttack);
             anim.SetBool("attack1", false);
         }
-        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("jump", false);
     }
     private void OnCollisionExit()
     {
         isGrounded = false;
-        anim.SetBool("isGrounded", isGrounded);
+        anim.SetBool("jump", true);
     }
 
     // Left Stick Mapping 
@@ -136,7 +133,8 @@ public class PlayerManager_2 : Pawn
 
     public void Jump()
     {
-        rb.AddForce(Vector3.up * jumpSpeed * 10f, ForceMode.VelocityChange);
+        rb.AddForce(Vector3.up * jumpSpeed * 10f, ForceMode.Impulse);
+        Debug.Log("Jumping Now");
     }
 
     public void JumpAttack()
@@ -157,46 +155,28 @@ public class PlayerManager_2 : Pawn
         numberOfHits++;
         if (numberOfHits == 1)
         {
-            anim.SetBool("attack1", true);
+            anim.SetTrigger("attack1");
+            attackTime = 0.417f;
+            attacking = true;
         }
         numberOfHits = Mathf.Clamp(numberOfHits, 0, 3);
 
-        if (numberOfHits >= 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f && anim.GetCurrentAnimatorStateInfo(0).IsName("attack1"))
+        if (numberOfHits == 2 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.417f)
         {
-            anim.SetBool("attack1", false);
-            anim.SetBool("attack2", true);
+            anim.SetTrigger("attack2");
+            attackTime = 0.417f;
+            attacking = true;
         }
-        if (numberOfHits >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.5f && anim.GetCurrentAnimatorStateInfo(0).IsName("attack2"))
+        if (numberOfHits >= 3 && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.417f && !aboveThree)
         {
-            anim.SetBool("attack2", false);
-            anim.SetBool("attack3", true);
+            anim.SetTrigger("attack3");
+            attackTime = 0.750f;
+            attacking = true;
+            if (numberOfHits > 3)
+            {
+                aboveThree = true;
+            }
         }
     
     }
-
-    public void SendAttackInput(bool value)
-    {
-        if(value)
-        {
-            inputBool = true;
-        }
-        else
-        {
-            inputBool = false;
-        }
-    }
-    /*
-    public void Attack()
-    {
-        anim.SetBool("attack1", attack1);
-    }
-    public void Attack2()
-    {
-        anim.SetBool("attack2", attack2);
-    }
-    public void Attack3()
-    {
-        anim.SetBool("attack3", attack3);
-    }
-    */
 }

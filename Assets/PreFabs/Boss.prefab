@@ -235,7 +235,7 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7364858409520923533}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
@@ -268,6 +268,7 @@ MonoBehaviour:
   attackPoint1: {fileID: 1125709177178254623}
   attackPoint2: {fileID: 1462449502687944208}
   sprite: {fileID: 1214937601908519921}
+  balloons: 3
 --- !u!65 &7394346798777624521
 BoxCollider:
   m_ObjectHideFlags: 0
