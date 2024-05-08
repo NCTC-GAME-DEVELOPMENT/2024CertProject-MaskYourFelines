@@ -2641,6 +2641,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1414580713404584276, guid: 5411e7ab6017d4c4784bd292864c0a49, type: 3}
+      propertyPath: VictoryScreen
+      value: 
+      objectReference: {fileID: 360523216}
     - target: {fileID: 2240717731683150331, guid: 5411e7ab6017d4c4784bd292864c0a49, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.93
