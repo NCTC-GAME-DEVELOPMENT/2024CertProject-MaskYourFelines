@@ -43,17 +43,15 @@ public class PlayerManager_2 : Pawn
     public float lastHitTime = 0;
 
     private float maxHitDelay = 1;
-    private int buttonPresses = 0;
-    private float lastCheckTime;
-    private bool inputBool;
     private bool idle = true;
     private float attackTime;
     private bool attacking = false;
     private bool aboveThree;
 
-    float timer = 0;
-    float timerSet;
-    int comboHits;
+    public float gameOverTimer = 0;
+    public float duration = 3f;
+    public bool isGameOver;
+    public GameObject GameOverScreen;
 
     Rigidbody rb;
 
@@ -65,6 +63,8 @@ public class PlayerManager_2 : Pawn
         collider3 = attackPoint3.GetComponent<BoxCollider>();
         colliderJump = attackJump.GetComponent<BoxCollider>();
         anim.SetBool("isKnockedDown", false);
+        isGameOver = false;
+        GameOverScreen.SetActive(false);
     }
 
     public void Update()
@@ -74,7 +74,6 @@ public class PlayerManager_2 : Pawn
         {
             WalkLeft = false;
             WalkRight = true;
-            //player.flipX = false;
             transform.eulerAngles = new Vector3(0, 270, 0);
             anim.SetBool("WalkRight", true);
         }
@@ -87,7 +86,6 @@ public class PlayerManager_2 : Pawn
         {
             WalkRight = false;
             WalkLeft = true;
-            //player.flipX = true;
             transform.eulerAngles = new Vector3(0, 90, 0);
             anim.SetBool("WalkLeft", true);
         }

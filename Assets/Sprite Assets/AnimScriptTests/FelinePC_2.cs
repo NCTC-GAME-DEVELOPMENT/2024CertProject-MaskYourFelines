@@ -25,7 +25,10 @@ public class FelinePC_2 : PlayerController
 
     public void Move(Vector2 value)
     {
-        player.Move(value); 
+        if (player.isGameOver == false)
+        {
+            player.Move(value);
+        }
     }
 
     bool isGrounded()
@@ -35,12 +38,12 @@ public class FelinePC_2 : PlayerController
 
     public void Jump(bool value)
     {
-            if (value && player.isGrounded == true)
+            if (value && player.isGrounded == true && player.isGameOver == false)
             {
                 player.Jump();
             }
 
-            if (player.isGrounded == false && InputCurrent.buttonEast)
+            if (player.isGrounded == false && InputCurrent.buttonEast && player.isGameOver == false)
             {
                 player.jumpAttack = true;
                 player.JumpAttack();
@@ -49,7 +52,7 @@ public class FelinePC_2 : PlayerController
 
     public void Attack(bool value)
     {
-        if (value && player.isGrounded == true)
+        if (value && player.isGrounded == true && player.isGameOver == false)
         {
             player.ComboAttack();
         }

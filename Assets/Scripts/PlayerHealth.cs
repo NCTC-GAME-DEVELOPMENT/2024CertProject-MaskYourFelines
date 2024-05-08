@@ -18,9 +18,18 @@ public class PlayerHealth : MonoBehaviour
     
     void Update()
     {
-       if (CurrentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
             player.anim.SetBool("isKnockedDown", true);
+            player.isGameOver = true;
+            player.GameOverScreen.SetActive(true);
+            player.gameOverTimer += Time.deltaTime;
+            if (player.gameOverTimer >= player.duration)
+            {
+                player.gameOverTimer = 0;
+                player.isGameOver = false;
+                MainMenu.instance.MainMenuScene();
+            }
         }
     }
 
