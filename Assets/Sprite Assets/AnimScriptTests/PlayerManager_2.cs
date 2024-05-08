@@ -48,10 +48,12 @@ public class PlayerManager_2 : Pawn
     private bool attacking = false;
     private bool aboveThree;
 
-    public float gameOverTimer = 0;
+    public float gameTimer = 0;
     public float duration = 3f;
     public bool isGameOver;
+    public bool isGameWon;
     public GameObject GameOverScreen;
+    public GameObject VictoryScreen;
 
     Rigidbody rb;
 
@@ -65,7 +67,7 @@ public class PlayerManager_2 : Pawn
         anim.SetBool("isKnockedDown", false);
         isGameOver = false;
         GameOverScreen.SetActive(false);
-        gameOverTimer = 0;
+        gameTimer = 3;
     }
 
     public void Update()
@@ -140,10 +142,17 @@ public class PlayerManager_2 : Pawn
             anim.SetBool("jump", true);
         }
 
-        if (playerHealth)
+        if(isGameWon)
         {
-
+            VictoryScreen.SetActive(true);
+            gameTimer -= Time.deltaTime;
+            if (gameTimer < 0)
+            {
+                isGameWon = false;
+                MainMenu.instance.MainMenuScene();
+            }
         }
+
     }
 
     public void FixedUpdate()

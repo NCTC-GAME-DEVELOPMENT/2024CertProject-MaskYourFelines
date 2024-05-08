@@ -2642,6 +2642,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1414580713404584276, guid: 5411e7ab6017d4c4784bd292864c0a49, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 8621722758599315246}
+    - target: {fileID: 1414580713404584276, guid: 5411e7ab6017d4c4784bd292864c0a49, type: 3}
       propertyPath: VictoryScreen
       value: 
       objectReference: {fileID: 360523216}
@@ -2839,6 +2843,10 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 8420354384144473005}
+    - target: {fileID: 4237719576518369642, guid: 677ba5efff0753a488abd2e4ae613d9a, type: 3}
+      propertyPath: VictoryScreen
+      value: 
+      objectReference: {fileID: 360523216}
     - target: {fileID: 4237719576518369642, guid: 677ba5efff0753a488abd2e4ae613d9a, type: 3}
       propertyPath: GameOverScreen
       value: 

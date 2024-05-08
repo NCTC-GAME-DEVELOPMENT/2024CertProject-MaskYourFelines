@@ -16,7 +16,7 @@ public class Boss : EnemyBase
     private float windup = 0.3f; // originally 0.5, changed to make boss more scary
     private float attackTime = 0.111f; // originally 0.333, changed to make boss more scary
     private float activeTime = 0.1f;
-    private float idleTime = 2f;
+    private float idleTime = 1f;
     private float hitStunTimer = 0f;
 
     private int doSomething = 0;
@@ -29,8 +29,8 @@ public class Boss : EnemyBase
     private float blinkDuration = 1f;
     private float blinkInterval = 0.2f;
     private Coroutine blinkCoroutine;
-    public bool isGameWon = false;
     public GameObject VictoryScreen;
+    public PlayerManager_2 player;
 
     protected override void InitializeObject()
     {
@@ -230,7 +230,7 @@ public class Boss : EnemyBase
             timer += blinkInterval;
         }
         spriteRenderer.enabled = true;
-        isGameWon = true;
+        player.isGameWon = true;
         Destroy(gameObject);
     }
 
@@ -271,10 +271,10 @@ public class Boss : EnemyBase
 
     private void ResetTimers()
     {
-        windup = 0.5f;
-        attackTime = 0.333f;
+        windup = 0.3f;
+        attackTime = 0.111f;
         activeTime = 0.1f;
-        idleTime = 2f;
+        idleTime = 1f;
         trigger = false;
     }
 }
