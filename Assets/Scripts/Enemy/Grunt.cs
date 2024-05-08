@@ -25,6 +25,11 @@ public class Grunt : EnemyBase
     private float blinkDuration = 1f;
     private float blinkInterval = 0.2f;
     private Coroutine blinkCoroutine;
+
+    public AudioSource source;
+    public AudioClip meow1;
+    public AudioClip meow2;
+    public AudioClip deathMeow;
     protected override void InitializeObject()
     {
         base.InitializeObject();
@@ -158,6 +163,7 @@ public class Grunt : EnemyBase
     {
         if (!trigger)
         {
+            source.PlayOneShot(deathMeow);
             animator.SetTrigger("isDead");
             navMeshAgent.SetDestination(transform.position);
             blinkCoroutine = StartCoroutine(BlinkCoroutine());

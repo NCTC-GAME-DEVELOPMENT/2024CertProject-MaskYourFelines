@@ -9,6 +9,11 @@ public class MainMenu : MonoBehaviour
     string Stage1_Scene = "GamePlayStage";
     string MainMenu_Scene = "MainMenu";
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     public void stage1()
     {
         Debug.Log("Stage1");
@@ -18,6 +23,7 @@ public class MainMenu : MonoBehaviour
 
     public void MainMenuScene()
     {
-        SceneManager.LoadScene("MainMenu");
+        Debug.Log("menu is loaded");
+        SceneManager.LoadScene(MainMenu_Scene);
     }
 }
