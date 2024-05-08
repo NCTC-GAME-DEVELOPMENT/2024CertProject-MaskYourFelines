@@ -17,8 +17,6 @@ public class PlayerHealth : MonoBehaviour
         CurrentHealth = maxHealth;
         healthBar.setmaxhealth(maxHealth);
     }
-
-    
     void Update()
     {
         if (CurrentHealth <= 0)
@@ -30,11 +28,9 @@ public class PlayerHealth : MonoBehaviour
                 Debug.Log("time is up");
                 player.isGameOver = false;
                 MainMenu.instance.MainMenuScene();
-                player.gameOverTimer = 0;
             }
         }
     }
-
     void OnDeath()
     {
         Debug.Log("health is zero");
@@ -49,12 +45,5 @@ public class PlayerHealth : MonoBehaviour
         CurrentHealth -= damage;
         player.anim.SetTrigger("isDamaged");
         healthBar.SetHealth(CurrentHealth);
-        player.anim.SetTrigger("isDamaged");
-    }
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
     }
 }

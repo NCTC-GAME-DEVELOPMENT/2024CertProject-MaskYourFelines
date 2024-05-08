@@ -65,6 +65,7 @@ public class PlayerManager_2 : Pawn
         anim.SetBool("isKnockedDown", false);
         isGameOver = false;
         GameOverScreen.SetActive(false);
+        gameOverTimer = 0;
     }
 
     public void Update()
