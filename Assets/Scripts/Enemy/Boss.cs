@@ -29,6 +29,8 @@ public class Boss : EnemyBase
     private float blinkDuration = 1f;
     private float blinkInterval = 0.2f;
     private Coroutine blinkCoroutine;
+    public bool isGameWon = false;
+    public GameObject VictoryScreen;
 
     protected override void InitializeObject()
     {
@@ -228,7 +230,7 @@ public class Boss : EnemyBase
             timer += blinkInterval;
         }
         spriteRenderer.enabled = true;
-
+        isGameWon = true;
         Destroy(gameObject);
     }
 
