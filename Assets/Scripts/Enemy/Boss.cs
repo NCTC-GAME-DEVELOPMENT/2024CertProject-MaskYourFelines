@@ -122,7 +122,7 @@ public class Boss : EnemyBase
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
-        if (distanceToPlayer <= 4)
+        if (distanceToPlayer <= 5)
         {
             ResetTimers();
             navMeshAgent.SetDestination(transform.position);
@@ -163,7 +163,7 @@ public class Boss : EnemyBase
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
-        if (distanceToPlayer > 4)
+        if (distanceToPlayer > 5)
         {
             ResetTimers();
             think = MoveToPlayer;
@@ -187,7 +187,7 @@ public class Boss : EnemyBase
         if (idleTime <= 0)
         {
             int random = Random.Range(1, 3);
-            if (random == 1 || doSomething == 3)
+            if (random == 1 || doSomething >= 3)
             {
                 ResetTimers();
                 doSomething = 0;

@@ -31,6 +31,8 @@ public class Charger : EnemyBase
     private Coroutine blinkCoroutine;
 
     private Vector3 chargePoint;
+    public float distanceToChargePoint;
+    public float distanceToPlayer;
 
     protected override void InitializeObject()
     {
@@ -81,7 +83,7 @@ public class Charger : EnemyBase
     {
         base.MoveToPlayer();
 
-        float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
+        distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
         if (distanceToPlayer <= 6)
         {
@@ -182,8 +184,9 @@ public class Charger : EnemyBase
         }
 
         float distanceToPoint = Vector3.Distance(chargePoint, transform.position);
+        distanceToChargePoint = distanceToPoint;
 
-        if (distanceToPoint <= 2)
+        if (distanceToPoint <= 5)
         {
             if (charging)
             {

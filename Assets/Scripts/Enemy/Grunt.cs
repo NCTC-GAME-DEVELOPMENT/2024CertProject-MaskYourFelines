@@ -76,7 +76,7 @@ public class Grunt : EnemyBase
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
-        if (distanceToPlayer <= 3)
+        if (distanceToPlayer <= 5)
         {
             ResetTimers();
             navMeshAgent.SetDestination(transform.position);
@@ -117,7 +117,7 @@ public class Grunt : EnemyBase
 
         float distanceToPlayer = Vector3.Distance(playerObj.transform.position, transform.position);
 
-        if (distanceToPlayer > 3)
+        if (distanceToPlayer > 5)
         {
             ResetTimers();
             think = MoveToPlayer;

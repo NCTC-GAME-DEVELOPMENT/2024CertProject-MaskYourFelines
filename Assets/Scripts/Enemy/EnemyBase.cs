@@ -8,6 +8,7 @@ public class EnemyBase : MonoBehaviour
     protected NavMeshAgent navMeshAgent;
     protected GameObject playerObj;
     protected PlayerManager_2 playerManager;
+    public Vector3 playerTransform;
 
     public int health;
     public int damage;

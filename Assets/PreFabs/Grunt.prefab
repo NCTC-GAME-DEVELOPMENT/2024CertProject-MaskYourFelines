@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7929785703813645098}
   - component: {fileID: 3798064615092681310}
   - component: {fileID: 8359969206470811594}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemySprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5150600749626528195}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6850826229106493230}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 7980234826132042831}
   - component: {fileID: 954913194107220921}
   - component: {fileID: 8756112182677552188}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Grunt
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -262,6 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccb2b64858ee45b42a743b7b76c34996, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {x: 0, y: 0, z: 0}
   health: 10
   damage: 5
   hitBox: {fileID: 6571333210224973583}
@@ -300,7 +301,7 @@ GameObject:
   - component: {fileID: 5829423399433509803}
   - component: {fileID: 8352440065586165025}
   - component: {fileID: 8046238077094816891}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

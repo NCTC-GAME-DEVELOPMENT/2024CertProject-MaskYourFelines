@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7176635500578515307}
   - component: {fileID: 3954975184676932524}
   - component: {fileID: 5019199291299140871}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78,8 +78,9 @@ GameObject:
   - component: {fileID: 7692314314993106059}
   - component: {fileID: 5792477143528773347}
   - component: {fileID: 4831241116841581692}
+  - component: {fileID: -412085427647005767}
   - component: {fileID: 3002724619321599225}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Charger
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -148,6 +149,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.5, y: 2.5, z: 2}
   m_Center: {x: 0, y: 1.45, z: -0.1}
+--- !u!54 &-412085427647005767
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1615795323544376241}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!114 &3002724619321599225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06dddf9a29355a649989d7a7bbf17c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerTransform: {x: 0, y: 0, z: 0}
   health: 50
   damage: 5
   hitBox: {fileID: 116298578805399713}
@@ -167,6 +196,8 @@ MonoBehaviour:
   attackPoint2: {fileID: 6867144864441648356}
   sprite: {fileID: 8643893953033755710}
   chargeDamage: 10
+  distanceToChargePoint: 0
+  distanceToPlayer: 0
 --- !u!1 &4581379164993392334
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9050468627313984228}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackPoint1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4920357814815813752}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackPoint2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +272,7 @@ GameObject:
   - component: {fileID: 7148859378209464654}
   - component: {fileID: 8909607173348489475}
   - component: {fileID: 1333227419912220425}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemySprite
   m_TagString: Enemy
   m_Icon: {fileID: 0}

@@ -15,7 +15,7 @@ public class DamagePlayer : MonoBehaviour
     {
         if (other.CompareTag("Player") && other.GetComponent<PlayerHealth>() != null)
         {
-            other.GetComponent<PlayerHealth>().CurrentHealth -= damage;
+            other.GetComponent<PlayerHealth>().takeDamage(damage);
             Debug.Log("DAMAGED PLAYER (" + other.GetComponent<PlayerHealth>().CurrentHealth + " HP)");
         }
     }
