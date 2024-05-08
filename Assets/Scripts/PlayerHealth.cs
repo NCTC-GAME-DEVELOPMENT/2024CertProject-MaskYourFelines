@@ -18,8 +18,6 @@ public class PlayerHealth : MonoBehaviour
         CurrentHealth = maxHealth;
         healthBar.setmaxhealth(maxHealth);
     }
-
-    
     void Update()
     {
         if (endgameTimer > 0)
@@ -37,7 +35,6 @@ public class PlayerHealth : MonoBehaviour
             OnDeath(); 
         }
     }
-
     void OnDeath()
     {
         isEndGame = true; 
@@ -53,12 +50,5 @@ public class PlayerHealth : MonoBehaviour
         CurrentHealth -= damage;
         player.anim.SetTrigger("isDamaged");
         healthBar.SetHealth(CurrentHealth);
-        player.anim.SetTrigger("isDamaged");
-    }
-
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
     }
 }
