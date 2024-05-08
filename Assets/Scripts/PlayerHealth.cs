@@ -9,7 +9,8 @@ public class PlayerHealth : MonoBehaviour
     public PlayerManager_2 player;
 
 
-    float endgameTimer = 0; 
+    float endgameTimer = 0;
+    bool isEndGame = false; 
 
     public HealthBar healthBar;
     void Start()
@@ -19,21 +20,25 @@ public class PlayerHealth : MonoBehaviour
     }
     void Update()
     {
-        if (CurrentHealth <= 0)
+        if (endgameTimer > 0)
         {
-            OnDeath(); 
-            player.gameOverTimer += Time.deltaTime;
-            if (player.gameOverTimer >= endgameTimer)
+            endgameTimer -= Time.deltaTime; 
+            if (endgameTimer  < 0 )
             {
-                Debug.Log("time is up");
                 player.isGameOver = false;
                 MainMenu.instance.MainMenuScene();
             }
         }
+
+        if ((!isEndGame) && (CurrentHealth <= 0) )
+        {
+            OnDeath(); 
+        }
     }
     void OnDeath()
     {
-        Debug.Log("health is zero");
+        isEndGame = true; 
+        //Debug.Log("health is zero");
         player.anim.SetBool("isKnockedDown", true);
         player.isGameOver = true;
         player.GameOverScreen.SetActive(true);
