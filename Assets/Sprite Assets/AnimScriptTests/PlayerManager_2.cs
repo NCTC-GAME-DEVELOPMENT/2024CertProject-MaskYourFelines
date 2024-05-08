@@ -13,6 +13,7 @@ public class PlayerManager_2 : Pawn
     public float jumpSpeed = 50f;
     public Animator anim;
     public SpriteRenderer player;
+    public PlayerHealth playerHealth;
     private float groundCheckDistance = 4.530671f;
 
     [SerializeField] private Transform playerBody;
@@ -135,6 +136,11 @@ public class PlayerManager_2 : Pawn
         {
             isGrounded = false;
             anim.SetBool("jump", true);
+        }
+
+        if (playerHealth)
+        {
+
         }
     }
 
