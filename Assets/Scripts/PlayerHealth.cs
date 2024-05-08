@@ -18,7 +18,10 @@ public class PlayerHealth : MonoBehaviour
     
     void Update()
     {
-       
+       if (CurrentHealth <= 0)
+        {
+            player.anim.SetBool("isKnockedDown", true);
+        }
     }
 
     public void takeDamage(int damage)
@@ -26,6 +29,7 @@ public class PlayerHealth : MonoBehaviour
         CurrentHealth -= damage;
         player.anim.SetTrigger("isDamaged");
         healthBar.SetHealth(CurrentHealth);
+        player.anim.SetTrigger("isDamaged");
     }
 
 

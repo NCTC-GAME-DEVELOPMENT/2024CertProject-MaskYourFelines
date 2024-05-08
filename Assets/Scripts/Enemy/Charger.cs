@@ -34,6 +34,9 @@ public class Charger : EnemyBase
     public float distanceToChargePoint;
     public float distanceToPlayer;
 
+    public AudioSource source;
+    public AudioClip chargeSFX;
+
     protected override void InitializeObject()
     {
         base.InitializeObject();
@@ -181,6 +184,7 @@ public class Charger : EnemyBase
             navMeshAgent.SetDestination(playerObj.transform.position);
             chargePoint = playerObj.transform.position;
             animator.SetTrigger("isCharging");
+            source.PlayOneShot(chargeSFX);
         }
 
         float distanceToPoint = Vector3.Distance(chargePoint, transform.position);
@@ -191,6 +195,7 @@ public class Charger : EnemyBase
             if (charging)
             {
                 charging = false;
+                source.Stop();
                 gameObject.GetComponent<Collider>().isTrigger = false;
                 navMeshAgent.speed = 3.5f;
                 animator.SetTrigger("isIdle");

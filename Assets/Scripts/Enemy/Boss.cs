@@ -13,8 +13,8 @@ public class Boss : EnemyBase
     private Animator animator;
     private Rigidbody rb;
 
-    private float windup = 0.5f;
-    private float attackTime = 0.333f;
+    private float windup = 0.3f; // originally 0.5, changed to make boss more scary
+    private float attackTime = 0.111f; // originally 0.333, changed to make boss more scary
     private float activeTime = 0.1f;
     private float idleTime = 2f;
     private float hitStunTimer = 0f;

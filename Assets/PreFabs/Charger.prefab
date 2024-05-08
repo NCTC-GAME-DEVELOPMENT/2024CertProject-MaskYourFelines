@@ -168,7 +168,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 128
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -198,6 +198,8 @@ MonoBehaviour:
   chargeDamage: 10
   distanceToChargePoint: 0
   distanceToPlayer: 0
+  source: {fileID: 0}
+  chargeSFX: {fileID: 8300000, guid: fbd03f08f9445a04080230e1b3279230, type: 3}
 --- !u!1 &4581379164993392334
 GameObject:
   m_ObjectHideFlags: 0

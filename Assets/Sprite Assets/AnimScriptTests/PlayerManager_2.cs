@@ -37,6 +37,8 @@ public class PlayerManager_2 : Pawn
     public bool WalkLeft = false;
     public bool jumpAttack = false;
 
+    public AudioSource source;
+
     public int numberOfHits = 0;
     public float lastHitTime = 0;
 
@@ -62,6 +64,7 @@ public class PlayerManager_2 : Pawn
         collider2 = attackPoint2.GetComponent<BoxCollider>();
         collider3 = attackPoint3.GetComponent<BoxCollider>();
         colliderJump = attackJump.GetComponent<BoxCollider>();
+        anim.SetBool("isKnockedDown", false);
     }
 
     public void Update()
